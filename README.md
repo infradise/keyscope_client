@@ -12,9 +12,10 @@
   [![CT](https://github.com/infradise/valkey_client/actions/workflows/valkey_client_ct.yaml/badge.svg)](https://github.com/infradise/valkey_client/actions/workflows/valkey_client_ct.yaml)
 
   <p>
-    <a href="https://www.buymeacoffee.com/infradise" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="30px" width= "108px"></a>
+    <a href="https://www.buymeacoffee.com/Infradise" target="_blank">
+        <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 45px !important;width: 162px !important;">
+    </a>
   </p>
-
   <p>
     <a href="#overview">Overview</a> •
     <a href="#need-help">Need help?</a> •
