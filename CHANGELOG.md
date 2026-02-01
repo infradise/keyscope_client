@@ -12,6 +12,8 @@
         * Added full suite of json debug subcommands: `jsonDebugDepth`, `jsonDebugFields`, `jsonDebugHelp`, `jsonDebugKeyTableCheck`, `jsonDebugKeyTableCorrupt`, `jsonDebugKeyTableDistribution`, `jsonDebugMaxDepthKey`, `jsonDebugMaxSizeKey`, `jsonDebugMemory`, `jsonDebugTestSharedApi`.
     * **New Generic Commands**
         * **Refactored**: Exposed `scan` command and `ScanResult` class for public use.
+    * **Breaking Changes**
+        * `del`: Use `del(List<String> keys)` instead of `del(String key)` has been deprecated. 
 
 ## 3.0.0
 * **Modular Architecture**: Restructured monolithic command implementations into scalable, extension-based modules.
