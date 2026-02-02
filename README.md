@@ -52,7 +52,7 @@
 - [HASH](https://github.com/infradise/valkey_client/blob/main/docs/commands/HASH.md)
 - [JSON](https://github.com/infradise/valkey_client/blob/main/docs/commands/JSON.md)
 - [PUBSUB](https://github.com/infradise/valkey_client/blob/main/docs/commands/PUBSUB.md)
-- [TRANSACTION](https://github.com/infradise/valkey_client/blob/main/docs/commands/TRANSACTION.md)
+- [TRANSACTIONS](https://github.com/infradise/valkey_client/blob/main/docs/commands/TRANSACTIONS.md)
 - [LIST](https://github.com/infradise/valkey_client/blob/main/docs/commands/LIST.md)
 - [STRING](https://github.com/infradise/valkey_client/blob/main/docs/commands/STRING.md)
 - [SET](https://github.com/infradise/valkey_client/blob/main/docs/commands/SET.md)
