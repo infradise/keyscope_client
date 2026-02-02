@@ -18,16 +18,16 @@ limitations under the License.
 
 | valkey_client | Redis                                                               | Valkey                                               |
 |---------------|---------------------------------------------------------------------|------------------------------------------------------|
-| `blMove`      | [BLMOVE](https://redis.io/docs/latest/commands/blmove/)             | [BLMOVE](https://valkey.io/commands/blmove/)         |
-| `blmPop`      | [BLMPOP](https://redis.io/docs/latest/commands/blmpop/)             | [BLMPOP](https://valkey.io/commands/blmpop/)         |
-| `blPop`       | [BLPOP](https://redis.io/docs/latest/commands/blpop/)               | [BLPOP](https://valkey.io/commands/blpop/)           |
-| `brPop`       | [BRPOP](https://redis.io/docs/latest/commands/brpop/)               | [BRPOP](https://valkey.io/commands/brpop/)           |
-| `brPopLPush`  | ~~[BRPOPLPUSH](https://redis.io/docs/latest/commands/brpoplpush/)~~ | [BRPOPLPUSH](https://valkey.io/commands/brpoplpush/) |
+| `bLMove`      | [BLMOVE](https://redis.io/docs/latest/commands/blmove/)             | [BLMOVE](https://valkey.io/commands/blmove/)         |
+| `bLMPop`      | [BLMPOP](https://redis.io/docs/latest/commands/blmpop/)             | [BLMPOP](https://valkey.io/commands/blmpop/)         |
+| `bLPop`       | [BLPOP](https://redis.io/docs/latest/commands/blpop/)               | [BLPOP](https://valkey.io/commands/blpop/)           |
+| `bRPop`       | [BRPOP](https://redis.io/docs/latest/commands/brpop/)               | [BRPOP](https://valkey.io/commands/brpop/)           |
+| `bRPopLPush`  | ~~[BRPOPLPUSH](https://redis.io/docs/latest/commands/brpoplpush/)~~ | [BRPOPLPUSH](https://valkey.io/commands/brpoplpush/) |
 | `lIndex`      | [LINDEX](https://redis.io/docs/latest/commands/lindex/)             | [LINDEX](https://valkey.io/commands/lindex/)         |
 | `lInsert`     | [LINSERT](https://redis.io/docs/latest/commands/linsert/)           | [LINSERT](https://valkey.io/commands/linsert/)       |
 | `lLen`        | [LLEN](https://redis.io/docs/latest/commands/llen/)                 | [LLEN](https://valkey.io/commands/llen/)             |
 | `lMove`       | [LMOVE](https://redis.io/docs/latest/commands/lmove/)               | [LMOVE](https://valkey.io/commands/lmove/)           |
-| `lmPop`       | [LMPOP](https://redis.io/docs/latest/commands/lmpop/)               | [LMPOP](https://valkey.io/commands/lmpop/)           |
+| `lMPop`       | [LMPOP](https://redis.io/docs/latest/commands/lmpop/)               | [LMPOP](https://valkey.io/commands/lmpop/)           |
 | `lPop`        | [LPOP](https://redis.io/docs/latest/commands/lpop/)                 | [LPOP](https://valkey.io/commands/lpop/)             |
 | `lPos`        | [LPOS](https://redis.io/docs/latest/commands/lpos/)                 | [LPOS](https://valkey.io/commands/lpos/)             |
 | `lPush`       | [LPUSH](https://redis.io/docs/latest/commands/lpush/)               | [LPUSH](https://valkey.io/commands/lpush/)           |

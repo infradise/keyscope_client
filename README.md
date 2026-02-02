@@ -48,19 +48,25 @@
 
 ## Supported APIs
 
-- [Hash](https://github.com/infradise/valkey_client/blob/main/docs/commands/hash.md)
-- [JSON](https://github.com/infradise/valkey_client/blob/main/docs/commands/json.md)
-- [Pubsub](https://github.com/infradise/valkey_client/blob/main/docs/commands/pubsub.md) 
-- [Transaction](https://github.com/infradise/valkey_client/blob/main/docs/commands/transaction.md)
-- [Generic](https://github.com/infradise/valkey_client/blob/main/docs/commands/generic.md)
-- [List](https://github.com/infradise/valkey_client/blob/main/docs/commands/list.md)
-- Server: `flushDb`, `flushAll`
-- More
-  - Connection: `ping`, `echo`, `close`
-  - Cluster: `clusterSlots`, `asking`
-  - Strings: `get`, `set`, `mget`, `incr`, `decr`, `incrBy`, `decrBy`
-  - Sets: `sadd`, `srem`, `smembers`
-  - Sorted Sets: `zadd`, `zrem`, `zrange`
+- [HASH](https://github.com/infradise/valkey_client/blob/main/docs/commands/HASH.md)
+- [JSON](https://github.com/infradise/valkey_client/blob/main/docs/commands/JSON.md)
+- [PUBSUB](https://github.com/infradise/valkey_client/blob/main/docs/commands/PUBSUB.md)
+- [TRANSACTION](https://github.com/infradise/valkey_client/blob/main/docs/commands/TRANSACTION.md)
+- [LIST](https://github.com/infradise/valkey_client/blob/main/docs/commands/LIST.md)
+- [STRING](https://github.com/infradise/valkey_client/blob/main/docs/commands/STRING.md)
+- [SET](https://github.com/infradise/valkey_client/blob/main/docs/commands/SET.md)
+- [SORTED SET](https://github.com/infradise/valkey_client/blob/main/docs/commands/SORTED-SET.md)
+- [GENERIC](https://github.com/infradise/valkey_client/blob/main/docs/commands/GENERIC.md)
+- [CONNECTION](https://github.com/infradise/valkey_client/blob/main/docs/commands/CONNECTION.md)
+- [SERVER](https://github.com/infradise/valkey_client/blob/main/docs/commands/SERVER.md)
+- [CLUSTER](https://github.com/infradise/valkey_client/blob/main/docs/commands/CLUSTER.md)
+- [BITMAP](https://github.com/infradise/valkey_client/blob/main/docs/commands/BITMAP.md)
+- [BLOOM FILTER](https://github.com/infradise/valkey_client/blob/main/docs/commands/BLOOM-FILTER.md)
+- [GEOSPATIAL INDICES](https://github.com/infradise/valkey_client/blob/main/docs/commands/GEOSPATIAL-INDICES.md)
+- [HYPERLOGLOG](https://github.com/infradise/valkey_client/blob/main/docs/commands/HYPERLOGLOG.md)
+- [SCRIPTING AND FUNCTIONS](https://github.com/infradise/valkey_client/blob/main/docs/commands/SCRIPTING-AND-FUNCTIONS.md)
+- [SEARCH](https://github.com/infradise/valkey_client/blob/main/docs/commands/SEARCH.md)
+- [STREAM](https://github.com/infradise/valkey_client/blob/main/docs/commands/STREAM.md)
 
 ## Features
 

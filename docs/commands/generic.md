@@ -16,41 +16,41 @@ limitations under the License.
 
 # GENERIC
 
-copy, del, dump, exists, expire, expireAt, expireTime, keys, migrate, move, objectEncoding, objectFreq, objectIdleTime, objectRefCount, persist, pExpire, pExpireAt, pExpireTime, pTtl, randomKey, rename, renameNx, restore, scan, sort, sortRo, touch, ttl, type, unlink, wait, waitAof
+`del`, `exists`, `expire`, `scan`, `ttl`
 
-| valkey_client | Redis                                                                     | Valkey                                                         |
-|---------------|---------------------------------------------------------------------------|----------------------------------------------------------------|
-|               | [COPY](https://redis.io/docs/latest/commands/copy/)                       | [COPY](https://valkey.io/commands/copy/)                       |
-| `del`         | [DEL](https://redis.io/docs/latest/commands/del/)                         | [DEL](https://valkey.io/commands/del/)                         |
-|               | [DUMP](https://redis.io/docs/latest/commands//)                           | [DUMP](https://valkey.io/commands//)                           |
-| `exists`      | [EXISTS](https://redis.io/docs/latest/commands/exists/)                   | [EXISTS](https://valkey.io/commands/exists/)                   |
-| `expire`      | [EXPIRE](https://redis.io/docs/latest/commands/expire/)                   | [EXPIRE](https://valkey.io/commands/expire/)                   |
-|               | [EXPIREAT](https://redis.io/docs/latest/commands/expireat/)               | [EXPIREAT](https://valkey.io/commands/expireat/)               |
-|               | [EXPIRETIME](https://redis.io/docs/latest/commands/expiretime/)           | [EXPIRETIME](https://valkey.io/commands/expiretime/)           |
-|               | [KEYS](https://redis.io/docs/latest/commands/keys/)                       | [KEYS](https://valkey.io/commands/keys/)                       |
-|               | [MIGRATE](https://redis.io/docs/latest/commands/migrate/)                 | [MIGRATE](https://valkey.io/commands/migrate/)                 |
-|               | [MOVE](https://redis.io/docs/latest/commands/move/)                       | [MOVE](https://valkey.io/commands/move/)                       |
-|               | [OBJECT](https://redis.io/docs/latest/commands/object/)                   | [OBJECT](https://valkey.io/commands/object/)                   |
-|               | [OBJECT ENCODING](https://redis.io/docs/latest/commands/object-encoding/) | [OBJECT ENCODING](https://valkey.io/commands/object-encoding/) |
-|               | [OBJECT FREQ](https://redis.io/docs/latest/commands/object-freq/)         | [OBJECT FREQ](https://valkey.io/commands/object-freq/)         |
-|               | [OBJECT HELP](https://redis.io/docs/latest/commands/object-help/)         | [OBJECT HELP](https://valkey.io/commands/object-help/)         |
-|               | [OBJECT IDLETIME](https://redis.io/docs/latest/commands/object-idletime/) | [OBJECT IDLETIME](https://valkey.io/commands/object-idletime/) |
-|               | [OBJECT REFCOUNT](https://redis.io/docs/latest/commands/object-refcount/) | [OBJECT REFCOUNT](https://valkey.io/commands/object-refcount/) |
-|               | [PERSIST](https://redis.io/docs/latest/commands/persist/)                 | [PERSIST](https://valkey.io/commands/persist/)                 |
-|               | [PEXPIRE](https://redis.io/docs/latest/commands/pexpire/)                 | [PEXPIRE](https://valkey.io/commands/pexpire/)                 |
-|               | [PEXPIREAT](https://redis.io/docs/latest/commands/pexpireat/)             | [PEXPIREAT](https://valkey.io/commands/pexpireat/)             |
-|               | [PEXPIRETIME](https://redis.io/docs/latest/commands/pexpiretime/)         | [PEXPIRETIME](https://valkey.io/commands/pexpiretime/)         |
-|               | [PTTL](https://redis.io/docs/latest/commands/pttl/)                       | [PTTL](https://valkey.io/commands/pttl/)                       |
-|               | [RANDOMKEY](https://redis.io/docs/latest/commands/randomkey/)             | [RANDOMKEY](https://valkey.io/commands/randomkey/)             |
-|               | [RENAME](https://redis.io/docs/latest/commands/rename/)                   | [RENAME](https://valkey.io/commands/rename/)                   |
-|               | [RENAMENX](https://redis.io/docs/latest/commands/renamenx/)               | [RENAMENX](https://valkey.io/commands/renamenx/)               |
-|               | [RESTORE](https://redis.io/docs/latest/commands/restore/)                 | [RESTORE](https://valkey.io/commands/restore/)                 |
-| `scan`        | [SCAN](https://redis.io/docs/latest/commands/scan/)                       | [SCAN](https://valkey.io/commands/scan/)                       |
-|               | [SORT](https://redis.io/docs/latest/commands/sort/)                       | [SORT](https://valkey.io/commands/sort/)                       |
-|               | [SORT_RO](https://redis.io/docs/latest/commands/sort_ro/)                 | [SORT_RO](https://valkey.io/commands/sort_ro/)                 |
-|               | [TOUCH](https://redis.io/docs/latest/commands/touch/)                     | [TOUCH](https://valkey.io/commands/touch/)                     |
-| `ttl`         | [TTL](https://redis.io/docs/latest/commands/ttl/)                         | [TTL](https://valkey.io/commands/ttl/)                         |
-|               | [TYPE](https://redis.io/docs/latest/commands/type/)                       | [TYPE](https://valkey.io/commands/type/)                       |
-|               | [UNLINK](https://redis.io/docs/latest/commands/unlink/)                   | [UNLINK](https://valkey.io/commands/unlink/)                   |
-|               | [WAIT](https://redis.io/docs/latest/commands/wait/)                       | [WAIT](https://valkey.io/commands/wait/)                       |
-|               | [WAITAOF](https://redis.io/docs/latest/commands/waitaof/)                 | [WAITAOF](https://valkey.io/commands/waitaof/)                 |
+| valkey_client    | Redis                                                                     | Valkey                                                         |
+|------------------|---------------------------------------------------------------------------|----------------------------------------------------------------|
+| `copy`           | [COPY](https://redis.io/docs/latest/commands/copy/)                       | [COPY](https://valkey.io/commands/copy/)                       |
+| `del`            | [DEL](https://redis.io/docs/latest/commands/del/)                         | [DEL](https://valkey.io/commands/del/)                         |
+| `dump`           | [DUMP](https://redis.io/docs/latest/commands/dump/)                       | [DUMP](https://valkey.io/commands/dump/)                       |
+| `exists`         | [EXISTS](https://redis.io/docs/latest/commands/exists/)                   | [EXISTS](https://valkey.io/commands/exists/)                   |
+| `expire`         | [EXPIRE](https://redis.io/docs/latest/commands/expire/)                   | [EXPIRE](https://valkey.io/commands/expire/)                   |
+| `expireAt`       | [EXPIREAT](https://redis.io/docs/latest/commands/expireat/)               | [EXPIREAT](https://valkey.io/commands/expireat/)               |
+| `expireTime`     | [EXPIRETIME](https://redis.io/docs/latest/commands/expiretime/)           | [EXPIRETIME](https://valkey.io/commands/expiretime/)           |
+| `keys`           | [KEYS](https://redis.io/docs/latest/commands/keys/)                       | [KEYS](https://valkey.io/commands/keys/)                       |
+| `migrate`        | [MIGRATE](https://redis.io/docs/latest/commands/migrate/)                 | [MIGRATE](https://valkey.io/commands/migrate/)                 |
+| `move`           | [MOVE](https://redis.io/docs/latest/commands/move/)                       | [MOVE](https://valkey.io/commands/move/)                       |
+|                  | [OBJECT](https://redis.io/docs/latest/commands/object/)                   | [OBJECT](https://valkey.io/commands/object/)                   |
+| `objectEncoding` | [OBJECT ENCODING](https://redis.io/docs/latest/commands/object-encoding/) | [OBJECT ENCODING](https://valkey.io/commands/object-encoding/) |
+| `objectFreq`     | [OBJECT FREQ](https://redis.io/docs/latest/commands/object-freq/)         | [OBJECT FREQ](https://valkey.io/commands/object-freq/)         |
+| `objectHelp`     | [OBJECT HELP](https://redis.io/docs/latest/commands/object-help/)         | [OBJECT HELP](https://valkey.io/commands/object-help/)         |
+| `objectIdleTime` | [OBJECT IDLETIME](https://redis.io/docs/latest/commands/object-idletime/) | [OBJECT IDLETIME](https://valkey.io/commands/object-idletime/) |
+| `objectRefCount` | [OBJECT REFCOUNT](https://redis.io/docs/latest/commands/object-refcount/) | [OBJECT REFCOUNT](https://valkey.io/commands/object-refcount/) |
+| `persist`        | [PERSIST](https://redis.io/docs/latest/commands/persist/)                 | [PERSIST](https://valkey.io/commands/persist/)                 |
+| `pExpire`        | [PEXPIRE](https://redis.io/docs/latest/commands/pexpire/)                 | [PEXPIRE](https://valkey.io/commands/pexpire/)                 |
+| `pExpireAt`      | [PEXPIREAT](https://redis.io/docs/latest/commands/pexpireat/)             | [PEXPIREAT](https://valkey.io/commands/pexpireat/)             |
+| `pExpireTime`    | [PEXPIRETIME](https://redis.io/docs/latest/commands/pexpiretime/)         | [PEXPIRETIME](https://valkey.io/commands/pexpiretime/)         |
+| `pTtl`           | [PTTL](https://redis.io/docs/latest/commands/pttl/)                       | [PTTL](https://valkey.io/commands/pttl/)                       |
+| `randomKey`      | [RANDOMKEY](https://redis.io/docs/latest/commands/randomkey/)             | [RANDOMKEY](https://valkey.io/commands/randomkey/)             |
+| `rename`         | [RENAME](https://redis.io/docs/latest/commands/rename/)                   | [RENAME](https://valkey.io/commands/rename/)                   |
+| `renameNx`       | [RENAMENX](https://redis.io/docs/latest/commands/renamenx/)               | [RENAMENX](https://valkey.io/commands/renamenx/)               |
+| `restore`        | [RESTORE](https://redis.io/docs/latest/commands/restore/)                 | [RESTORE](https://valkey.io/commands/restore/)                 |
+| `scan`           | [SCAN](https://redis.io/docs/latest/commands/scan/)                       | [SCAN](https://valkey.io/commands/scan/)                       |
+| `sort`           | [SORT](https://redis.io/docs/latest/commands/sort/)                       | [SORT](https://valkey.io/commands/sort/)                       |
+| `sortRo`         | [SORT_RO](https://redis.io/docs/latest/commands/sort_ro/)                 | [SORT_RO](https://valkey.io/commands/sort_ro/)                 |
+| `touch`          | [TOUCH](https://redis.io/docs/latest/commands/touch/)                     | [TOUCH](https://valkey.io/commands/touch/)                     |
+| `ttl`            | [TTL](https://redis.io/docs/latest/commands/ttl/)                         | [TTL](https://valkey.io/commands/ttl/)                         |
+| `type`           | [TYPE](https://redis.io/docs/latest/commands/type/)                       | [TYPE](https://valkey.io/commands/type/)                       |
+| `unlink`         | [UNLINK](https://redis.io/docs/latest/commands/unlink/)                   | [UNLINK](https://valkey.io/commands/unlink/)                   |
+| `wait`           | [WAIT](https://redis.io/docs/latest/commands/wait/)                       | [WAIT](https://valkey.io/commands/wait/)                       |
+| `waitAof`        | [WAITAOF](https://redis.io/docs/latest/commands/waitaof/)                 | [WAITAOF](https://valkey.io/commands/waitaof/)                 |
