@@ -20,7 +20,7 @@
   <p>
     <a href="#overview">Overview</a> •
     <a href="#need-help">Need help?</a> •
-    <a href="#supported-apis">Supported APIs</a> •
+    <a href="#supported-commands">Supported Commands</a> •
     <a href="#features">Features</a> •
     <a href="#usage">Usage</a>
   </p>
@@ -74,34 +74,54 @@ Server management, connection handling, and flow control.
 
 ## Features
 
-* **Commands/Operations/Data Types:** See the `Supported APIs` section above.
-* **Redis/Valkey Module Detector:** Introduced to get Redis and Valkey module list and information. (e.g., `json`, `search`, `ldap`, `bf`, etc.)
-* **JSON Module Checker:** Introduced to check JSON module names in advance before running logic.
-* **Scalable Replica Reads:** Boost read performance by offloading read-only commands (e.g., `GET`, `EXISTS`) to replica nodes. Supports `ReadPreference` settings (`master`, `preferReplica`, `replicaOnly`) to control traffic flow.
-* **Smart Load Balancing :** Built-in load balancing strategies (`Round-Robin`, `Random`) to efficiently distribute read traffic across available replicas.
-* **Automatic Replica Discovery:** Automatically detects and connects to replica nodes via `INFO REPLICATION` (Standalone/Sentinel) to maintain an up-to-date pool of connections.
-* **Explicit Replica Configuration**: Added `explicitReplicas` to `ValkeyConnectionSettings` to manually define replica nodes, solving connectivity issues in some environments where auto-discovery fails.
-* **Smart Database Selection:** First-class support for selecting databases (0-15+) on connection. Automatically detects **Valkey 9.0+ Numbered Clusters** to enable multi-database support in cluster mode, while maintaining backward compatibility with Redis Clusters (DB 0 only).
-* **Server Metadata Discovery:** Access server details via `client.metadata` (Version, Mode, Server Name, Max Databases) to write adaptive logic for Valkey vs. Redis.
-* **Enterprise Security:** Native SSL/TLS support for secure communication. Fully compatible with major cloud providers (AWS, Azure, GCP) and supports custom security contexts (including self-signed certificates).
-* **Automatic Failover:** The client now survives node failures. If a master node goes down (connection refused/timeout), the client automatically refreshes the cluster topology and reroutes commands to the new master without throwing an exception.
-* **Connection Pool Hardening:** Implemented **Smart Release** mechanism. The pool automatically detects and discards "dirty" connections (e.g., inside Transaction or Pub/Sub) upon release, preventing pool pollution and resource leaks.
-* **Enhanced Developer Experience:** Expanded `Redis` aliases to include Exceptions, Configuration, and Data Models (`RedisException`, `RedisMessage`, etc.) for a seamless migration experience.
-* **Sharded Pub/Sub & Atomic Counters:** Added support for high-performance cluster messaging (`SPUBLISH`/`SSUBSCRIBE`) and atomic integer operations (`INCR`/`DECR`).
-* **Developer Experience:** Added `RedisClient` alias and smart redirection handling for better usability and stability.
-* **High Availability & Resilience:** Automatically and transparently handles cluster topology changes (`-MOVED` and `-ASK` redirections) to ensure robust failover, seamless scaling, and zero‑downtime operations.
-* **Multi-key Support:** Supports `MGET` across multiple nodes using smart Scatter-Gather pipelining.
-* **Cluster Client:** Added `ValkeyClusterClient` for automatic command routing in cluster mode.
-    * This client automatically routes commands to the correct node.
-    * We recommend using `ValkeyClient` for Standalone/Sentinel and `ValkeyClusterClient` for cluster environments.
-* **Built-in Connection Pooling:** `ValkeyPool` for efficient connection management (used by Standalone and Cluster clients).
-* **Cluster Auto-Discovery:** Added `client.clusterSlots()` to fetch cluster topology (via the `CLUSTER SLOTS` command), laying the foundation for full cluster support.
-* **Command Timeout:** Includes a built-in command timeout (via `ValkeyConnectionSettings`) to prevent client hangs on non-responsive servers.
-* **Robust Parsing:** Full RESP3 parser handling all core data types (`+`, `-`, `$`, `*`, `:`).
-* **Type-Safe Exceptions:** Clear distinction between connection errors (`ValkeyConnectionException`), server errors (`ValkeyServerException`), and client errors (`ValkeyClientException`).
-* **Pub/Sub Ready (Standalone/Sentinel):** `subscribe()` returns a `Subscription` object with a `Stream` and a `Future<void> ready` for easy and reliable message handling.
-* **Production-Ready (Standalone/Sentinel):** stable for production use in non-clustered environments.
-* **Production-Ready (Cluster):** stable for production use with full cluster support.
+### 🚀 Performance & Scalability
+
+| Feature | Description |
+| :------ | :---------- |
+| **Scalable Replica Reads**| Boost read performance by offloading read-only commands (e.g., `GET`, `EXISTS`) to replica nodes. Supports `ReadPreference` settings (`master`, `preferReplica`, `replicaOnly`) to control traffic flow. |
+| **Smart Load Balancing** | Built-in load balancing strategies (`Round-Robin`, `Random`) to efficiently distribute read traffic across available replicas. |
+| **Multi-key Support**| Supports `MGET` across multiple nodes using smart Scatter-Gather pipelining.|
+| **Sharded Pub/Sub & Atomic Counters** | Added support for high-performance cluster messaging (`SPUBLISH`/`SSUBSCRIBE`) and atomic integer operations (`INCR`/`DECR`). |
+
+### 🛡️ High Availability & Resilience
+
+| Feature | Description |
+| :------ | :---------- |
+| **Automatic Failover** |**Resilience:** The client now survives node failures. If a master node goes down (connection refused/timeout), the client automatically refreshes the cluster topology and reroutes commands to the new master without throwing an exception. |
+| **High Availability & Resilience** | Automatically and transparently handles cluster topology changes (`-MOVED` and `-ASK` redirections) to ensure robust failover, seamless scaling, and zero‑downtime operations. |
+| **Automatic Replica Discovery**| Automatically detects and connects to replica nodes via `INFO REPLICATION` (Standalone/Sentinel) to maintain an up-to-date pool of connections. |
+| **Cluster Auto-Discovery** | Added `client.clusterSlots()` to fetch cluster topology (via the `CLUSTER SLOTS` command), laying the foundation for full cluster support. |
+
+### 🧩 Developer Experience & Tooling
+
+| Feature | Description |
+| :------ | :---------- |
+| **Redis/Valkey Module Detector** | Retrieves module metadata to identify installed extensions (e.g., `json`, `search`, `ldap`, `bf`). |
+| **JSON Module Checker** | Pre-validates JSON module availability before execution. |
+| **Server Metadata Discovery** | Access server details via `client.metadata` (Version, Mode, Server Name, Max Databases) to write adaptive logic for Valkey vs. Redis. |
+| **Enhanced Developer Experience** | Expanded `Redis` aliases to include Exceptions, Configuration, and Data Models (`RedisException`, `RedisMessage`, etc.) for a seamless migration experience. |
+| **Developer Experience** | Added `RedisClient` alias and smart redirection handling for better usability and stability. |
+| **Type-Safe Exceptions** | Clear distinction between connection errors (`ValkeyConnectionException`), server errors (`ValkeyServerException`), and client errors (`ValkeyClientException`). |
+
+### 🔌 Connection & Configuration
+
+| Feature | Description |
+| :------ | :---------- |
+| **Smart Database Selection** | First-class support for selecting databases (0-15+) on connection. Automatically detects **Valkey 9.0+ Numbered Clusters** to enable multi-database support in cluster mode, while maintaining backward compatibility with Redis Clusters (DB 0 only). |
+| **Explicit Replica Configuration** | Added `explicitReplicas` to `ValkeyConnectionSettings` to manually define replica nodes, solving connectivity issues in environments where auto-discovery fails. |
+| **Cluster Client** | **ValkeyClusterClient:** Dedicated client for automatic command routing in cluster mode. We recommend using `ValkeyClient` for Standalone/Sentinel and `ValkeyClusterClient` for cluster environments. |
+| **Built-in Connection Pooling** | `ValkeyPool` for efficient connection management (used by Standalone and Cluster clients). |
+| **Connection Pool Hardening** | **Smart Release Mechanism:** Prevents pool pollution by automatically detecting and discarding "dirty" connections (e.g., inside Transaction or Pub/Sub) upon release. |
+| **Command Timeout** | Includes a built-in command timeout (via `ValkeyConnectionSettings`) to prevent client hangs on non-responsive servers. |
+
+### 🔒 Security & Core
+
+| Feature | Description |
+| :------ | :---------- |
+| **Enterprise Security** | Native SSL/TLS support compatible with major cloud providers (AWS, Azure, GCP). Supports custom security contexts (including self-signed certificates). |
+| **Robust Parsing** | Full RESP3 parser handling all core data types (`+`, `-`, `$`, `*`, `:`). |
+| **Pub/Sub Ready (Standalone/Sentinel)** | `subscribe()` returns a `Subscription` object with a `Stream` and a `Future<void> ready` for easy and reliable message handling. |
+| **Production-Ready** | **Standalone/Sentinel:** Stable for production use.<br>**Cluster:** Stable for production use with full cluster support. |
 
 ## Usage
 
