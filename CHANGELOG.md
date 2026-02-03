@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.3.0
+* **Modular Architecture**
+    * **New STRING Commands**: Implemented individual files per command for better scalability and maintainability.
+        * Added full suite of string commands: `append`, `decr`, `decrBy`, `delIfEq`, `get`, `getDel`, `getEx`, `getRange`, `getSet`, `incr`, `incrBy`, `incrByFloat`, `lcs`, `mGet`, `mSet`, `mSetNx`, `pSetEx`, `set`, `setEx`, `setNx`, `setRange`, `strLen`, `subStr`.
+        * The existing `mget` command is retained for now; it will be merged with `mGet` in a future release.
+        * Removed legacy monolithic commands (`get`, `set`, `incr`, `decr`, `incrBy`, `decrBy`) and replaced them with new modular extensions, while ensuring full backward compatibility and interface compliance.
+        * **ValkeyClusterClient**: Refactored.
+
 ## 3.2.0
 * **Modular Architecture**
     * **New LIST Commands**: Implemented individual files per command for better scalability and maintainability.
