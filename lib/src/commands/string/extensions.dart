@@ -17,7 +17,9 @@
 export 'commands/append.dart';
 export 'commands/decr.dart';
 export 'commands/decr_by.dart';
+export 'commands/del_ex.dart';
 export 'commands/del_if_eq.dart';
+export 'commands/digest.dart';
 export 'commands/get.dart';
 export 'commands/get_del.dart';
 export 'commands/get_ex.dart';
@@ -29,6 +31,7 @@ export 'commands/incr_by_float.dart';
 export 'commands/lcs.dart';
 export 'commands/m_get.dart';
 export 'commands/m_set.dart';
+export 'commands/m_set_ex.dart';
 export 'commands/m_set_nx.dart';
 export 'commands/p_set_ex.dart';
 export 'commands/set.dart';
