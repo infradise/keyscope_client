@@ -47,33 +47,30 @@
 3. Looking for a GUI built with `valkey_client`? Try [Keyscope](https://pub.dev/packages/keyscope)
 4. Need real‑time watch for Redis/Valkey pods and services across multiple K8s clusters? Try [Visualkube Jet](https://jet.visualkube.com)
 
-## Supported APIs
+## Supported Commands
 
-- [HASH](https://github.com/infradise/valkey_client/blob/main/docs/commands/HASH.md)
-- [JSON](https://github.com/infradise/valkey_client/blob/main/docs/commands/JSON.md)
-- [PUBSUB](https://github.com/infradise/valkey_client/blob/main/docs/commands/PUBSUB.md)
-- [TRANSACTIONS](https://github.com/infradise/valkey_client/blob/main/docs/commands/TRANSACTIONS.md)
-- [LIST](https://github.com/infradise/valkey_client/blob/main/docs/commands/LIST.md)
-- [STRING](https://github.com/infradise/valkey_client/blob/main/docs/commands/STRING.md)
-- [SET](https://github.com/infradise/valkey_client/blob/main/docs/commands/SET.md)
-- [SORTED SET](https://github.com/infradise/valkey_client/blob/main/docs/commands/SORTED-SET.md)
-- [GENERIC](https://github.com/infradise/valkey_client/blob/main/docs/commands/GENERIC.md)
-- [CONNECTION](https://github.com/infradise/valkey_client/blob/main/docs/commands/CONNECTION.md)
-- [SERVER](https://github.com/infradise/valkey_client/blob/main/docs/commands/SERVER.md)
-- [CLUSTER](https://github.com/infradise/valkey_client/blob/main/docs/commands/CLUSTER.md)
-- [BITMAP](https://github.com/infradise/valkey_client/blob/main/docs/commands/BITMAP.md)
-- [BLOOM FILTER](https://github.com/infradise/valkey_client/blob/main/docs/commands/BLOOM-FILTER.md)
-- [GEOSPATIAL INDICES](https://github.com/infradise/valkey_client/blob/main/docs/commands/GEOSPATIAL-INDICES.md)
-- [HYPERLOGLOG](https://github.com/infradise/valkey_client/blob/main/docs/commands/HYPERLOGLOG.md)
-- [SCRIPTING AND FUNCTIONS](https://github.com/infradise/valkey_client/blob/main/docs/commands/SCRIPTING-AND-FUNCTIONS.md)
-- [SEARCH](https://github.com/infradise/valkey_client/blob/main/docs/commands/SEARCH.md)
-- [STREAM](https://github.com/infradise/valkey_client/blob/main/docs/commands/STREAM.md)
-- [TIME SERIES](https://github.com/infradise/valkey_client/blob/main/docs/commands/TIME-SERIES.md)
-- [VECTOR SET](https://github.com/infradise/valkey_client/blob/main/docs/commands/VECTOR-SET.md)
-- [CUCKOO FILTER](https://github.com/infradise/valkey_client/blob/main/docs/commands/CUCKOO-FILTER.md)
-- [COUNT-MIN SKETCH](https://github.com/infradise/valkey_client/blob/main/docs/commands/COUNT-MIN-SKETCH.md)
-- [T-DIGEST SKETCH](https://github.com/infradise/valkey_client/blob/main/docs/commands/T-DIGEST-SKETCH.md)
-- [TOP-K SKETCH](https://github.com/infradise/valkey_client/blob/main/docs/commands/TOP-K-SKETCH.md)
+### Core Data Types
+
+Basic data structures and generic key operations.
+
+* [STRING](https://github.com/infradise/valkey_client/blob/main/docs/commands/STRING.md) / [HASH](https://github.com/infradise/valkey_client/blob/main/docs/commands/HASH.md) / [LIST](https://github.com/infradise/valkey_client/blob/main/docs/commands/LIST.md) / [SET](https://github.com/infradise/valkey_client/blob/main/docs/commands/SET.md) / [SORTED SET](https://github.com/infradise/valkey_client/blob/main/docs/commands/SORTED-SET.md)
+* [BITMAP](https://github.com/infradise/valkey_client/blob/main/docs/commands/BITMAP.md) / [HYPERLOGLOG](https://github.com/infradise/valkey_client/blob/main/docs/commands/HYPERLOGLOG.md) / [GEOSPATIAL INDICES](https://github.com/infradise/valkey_client/blob/main/docs/commands/GEOSPATIAL-INDICES.md) / [STREAM](https://github.com/infradise/valkey_client/blob/main/docs/commands/STREAM.md)
+* [GENERIC](https://github.com/infradise/valkey_client/blob/main/docs/commands/GENERIC.md) (Keys, Expiration, etc.)
+
+### Modules & Extensions
+
+Advanced data types and query engines (JSON, Search, Probabilistic structures).
+
+* [JSON](https://github.com/infradise/valkey_client/blob/main/docs/commands/JSON.md) / [SEARCH](https://github.com/infradise/valkey_client/blob/main/docs/commands/SEARCH.md) / [TIME SERIES](https://github.com/infradise/valkey_client/blob/main/docs/commands/TIME-SERIES.md) / [VECTOR SET](https://github.com/infradise/valkey_client/blob/main/docs/commands/VECTOR-SET.md)
+* [BLOOM FILTER](https://github.com/infradise/valkey_client/blob/main/docs/commands/BLOOM-FILTER.md) / [CUCKOO FILTER](https://github.com/infradise/valkey_client/blob/main/docs/commands/CUCKOO-FILTER.md)
+* [COUNT-MIN SKETCH](https://github.com/infradise/valkey_client/blob/main/docs/commands/COUNT-MIN-SKETCH.md) / [T-DIGEST SKETCH](https://github.com/infradise/valkey_client/blob/main/docs/commands/T-DIGEST-SKETCH.md) / [TOP-K SKETCH](https://github.com/infradise/valkey_client/blob/main/docs/commands/TOP-K-SKETCH.md)
+
+### System & Operations
+
+Server management, connection handling, and flow control.
+
+* [CONNECTION](https://github.com/infradise/valkey_client/blob/main/docs/commands/CONNECTION.md) / [SERVER](https://github.com/infradise/valkey_client/blob/main/docs/commands/SERVER.md) / [CLUSTER](https://github.com/infradise/valkey_client/blob/main/docs/commands/CLUSTER.md)
+* [PUBSUB](https://github.com/infradise/valkey_client/blob/main/docs/commands/PUBSUB.md) / [TRANSACTIONS](https://github.com/infradise/valkey_client/blob/main/docs/commands/TRANSACTIONS.md) / [SCRIPTING AND FUNCTIONS](https://github.com/infradise/valkey_client/blob/main/docs/commands/SCRIPTING-AND-FUNCTIONS.md)
 
 ## Features
 
