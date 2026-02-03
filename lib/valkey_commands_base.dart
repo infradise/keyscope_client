@@ -39,7 +39,19 @@ abstract class ValkeyCommandsBase {
   ///
   /// Returns 'OK' if successful.
   /// Throws a [ValkeyServerException] if an error occurs.
-  Future<String> set(String key, String value);
+  // Future<String> set(String key, String value);
+  Future<String?> set(
+    String key,
+    String value, {
+    bool nx = false,
+    bool xx = false,
+    bool get = false,
+    int? ex,
+    int? px,
+    int? exAt,
+    int? pxAt,
+    bool keepTtl = false,
+  });
 
   /// Gets the values of all specified [keys].
   ///

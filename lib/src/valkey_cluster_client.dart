@@ -475,7 +475,18 @@ class ValkeyClusterClient implements ValkeyClusterClientBase {
       _executeOnKey(key, (client) => client.get(key));
 
   @override
-  Future<String> set(String key, String value) =>
+  Future<String?> set(
+    String key,
+    String value, {
+    bool nx = false,
+    bool xx = false,
+    bool get = false,
+    int? ex,
+    int? px,
+    int? exAt,
+    int? pxAt,
+    bool keepTtl = false,
+  }) =>
       _executeOnKey(key, (client) => client.set(key, value));
 
   @override

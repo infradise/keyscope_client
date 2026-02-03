@@ -61,6 +61,12 @@ import 'commands/set/commands.dart' show SetCommands;
 import 'commands/sorted_set/commands.dart' show SortedSetCommands;
 import 'commands/stream/commands.dart' show StreamCommands;
 import 'commands/string/commands.dart' show StringCommands;
+import 'commands/string/commands/decr.dart' show DecrCommand;
+import 'commands/string/commands/decr_by.dart' show DecrByCommand;
+import 'commands/string/commands/get.dart' show GetCommand;
+import 'commands/string/commands/incr.dart' show IncrCommand;
+import 'commands/string/commands/incr_by.dart' show IncrByCommand;
+import 'commands/string/commands/set.dart' show SetCommand;
 import 'commands/t_digest_sketch/commands.dart' show TDigestSketchCommands;
 import 'commands/time_series/commands.dart' show TimeSeriesCommands;
 import 'commands/top_k_sketch/commands.dart' show TopKSketchCommands;
@@ -1811,18 +1817,40 @@ class ValkeyClient // FYI. extends ValkeyConnection
   // --- SET/GET (v0.3.0) ---
 
   @override
-  Future<String?> get(String key) async {
-    final response = await execute(['GET', key]);
-    // The parser will return a String or null.
-    return response as String?;
-  }
+  Future<String?> get(String key) async => GetCommand(this).get(key);
+  // Future<String?> get(String key) async {
+  //   final response = await execute(['GET', key]);
+  //   // The parser will return a String or null.
+  //   return response as String?;
+  // }
 
   @override
-  Future<String> set(String key, String value) async {
-    final response = await execute(['SET', key, value]);
-    // SET returns "+OK"
-    return response as String;
-  }
+  Future<String?> set(
+    String key,
+    String value, {
+    bool nx = false,
+    bool xx = false,
+    bool get = false,
+    int? ex,
+    int? px,
+    int? exAt,
+    int? pxAt,
+    bool keepTtl = false,
+  }) async =>
+      SetCommand(this).set(key, value,
+          nx: nx,
+          xx: xx,
+          get: get,
+          ex: ex,
+          px: px,
+          exAt: exAt,
+          pxAt: pxAt,
+          keepTtl: keepTtl);
+  // Future<String> set(String key, String value) async {
+  //   final response = await execute(['SET', key, value]);
+  //   // SET returns "+OK"
+  //   return response as String;
+  // }
 
   // --- MGET (v0.4.0) ---
 
@@ -1841,32 +1869,38 @@ class ValkeyClient // FYI. extends ValkeyConnection
   // --- Atomic Counters (v1.6.0) ---
 
   @override
-  Future<int> incr(String key) async {
-    final response = await execute(['INCR', key]);
-    // Returns an Integer (:)
-    return response as int;
-  }
+  Future<int> incr(String key) async => IncrCommand(this).incr(key);
+  // Future<int> incr(String key) async {
+  //   final response = await execute(['INCR', key]);
+  //   // Returns an Integer (:)
+  //   return response as int;
+  // }
 
   @override
-  Future<int> decr(String key) async {
-    final response = await execute(['DECR', key]);
-    // Returns an Integer (:)
-    return response as int;
-  }
+  Future<int> decr(String key) async => DecrCommand(this).decr(key);
+  // Future<int> decr(String key) async {
+  //   final response = await execute(['DECR', key]);
+  //   // Returns an Integer (:)
+  //   return response as int;
+  // }
 
   @override
-  Future<int> incrBy(String key, int amount) async {
-    final response = await execute(['INCRBY', key, amount.toString()]);
-    // Returns an Integer (:)
-    return response as int;
-  }
+  Future<int> incrBy(String key, int amount) async =>
+      IncrByCommand(this).incrBy(key, amount);
+  // Future<int> incrBy(String key, int amount) async {
+  //   final response = await execute(['INCRBY', key, amount.toString()]);
+  //   // Returns an Integer (:)
+  //   return response as int;
+  // }
 
   @override
-  Future<int> decrBy(String key, int amount) async {
-    final response = await execute(['DECRBY', key, amount.toString()]);
-    // Returns an Integer (:)
-    return response as int;
-  }
+  Future<int> decrBy(String key, int amount) async =>
+      DecrByCommand(this).decrBy(key, amount);
+  // Future<int> decrBy(String key, int amount) async {
+  //   final response = await execute(['DECRBY', key, amount.toString()]);
+  //   // Returns an Integer (:)
+  //   return response as int;
+  // }
 
   // --- HASH (v0.5.0) ---
   @override
