@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.5.1
+
+* **Migration Notice:** This package has been renamed to [TypeRedis](https://pub.dev/packages/TypeRedis).
+* Updated `README.md` to guide users to the new package.
+
 ## 3.5.0
 * **Modular Architecture**
     * **New SORTED SET Commands** 
