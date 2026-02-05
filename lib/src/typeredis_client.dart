@@ -32,7 +32,7 @@ import 'cluster_slots_parser.dart' show parseClusterSlotsResponse;
 // ------------------------------------------------------------------------
 // 1. Import `Commands` below.
 // 2. Add `Commands` to `TRClient class with`.
-// 3. Export `Commands` in `lib/valkey_client.dart`.
+// 3. Export `Commands` in `lib/typeredis.dart`.
 // ------------------------------------------------------------------------
 import 'commands/bitmap/commands.dart' show BitmapCommands;
 import 'commands/bloom_filter/commands.dart' show BloomFilterCommands;

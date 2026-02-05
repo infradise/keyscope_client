@@ -265,7 +265,7 @@
 
 **🎉 First Production-Ready Stable Release (Standalone/Sentinel) 🎉**
 
-This release marks the first stable version of `valkey_client` suitable for production use in Standalone and Sentinel environments. All core data types, transactions, and Pub/Sub features are implemented and tested.
+This release marks the first stable version of `TypeRedis` suitable for production use in Standalone and Sentinel environments. All core data types, transactions, and Pub/Sub features are implemented and tested.
 
 ### Changed
 * **Production-Ready Cleanup:** Removed all internal debug `print` statements.
@@ -278,7 +278,7 @@ This release marks the first stable version of `valkey_client` suitable for prod
 
 ### Documentation
 * **README.md:** Updated to reflect `v1.0.0` status. Added an **Important Note** regarding the lack of built-in connection pooling and recommending `package:pool`.
-* **API Reference:** Added comprehensive Dart Doc comments for all public classes and methods in `valkey_client_base.dart` and `exceptions.dart`.
+* **API Reference:** Added comprehensive Dart Doc comments for all public classes and methods in `typeredis_base.dart` and `exceptions.dart`.
 
 
 ## 0.12.0

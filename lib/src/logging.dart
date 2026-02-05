@@ -66,7 +66,7 @@ class TRLogLevel {
   static const TRLogLevel OFF = off;
 }
 
-/// A simple internal logger for the valkey_client.
+/// A simple internal logger for the typeredis.
 ///
 /// This avoids adding an external dependency on `package:logging`.
 class TRLogger {

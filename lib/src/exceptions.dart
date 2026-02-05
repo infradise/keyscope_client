@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-/// The base class for all exceptions thrown by the valkey_client package.
+/// The base class for all exceptions thrown by the typeredis package.
 class TRException implements Exception {
   final String message;
 
