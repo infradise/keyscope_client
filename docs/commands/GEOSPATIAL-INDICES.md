@@ -16,15 +16,15 @@ limitations under the License.
 
 # GEOSPATIAL INDICES
 
-| TypeRedis             | Redis                                                                               | Valkey                                                                   |
-|-----------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| `geoAdd`              | [GEOADD](https://redis.io/docs/latest/commands/geoadd/)                             | [GEOADD](https://valkey.io/commands/geoadd/)                             |
-| `geoDist`             | [GEODIST](https://redis.io/docs/latest/commands/geodist/)                           | [GEODIST](https://valkey.io/commands/geodist/)                           |
-| `geoHash`             | [GEOHASH](https://redis.io/docs/latest/commands/geohash/)                           | [GEOHASH](https://valkey.io/commands/geohash/)                           |
-| `geoPos`              | [GEOPOS](https://redis.io/docs/latest/commands/geopos/)                             | [GEOPOS](https://valkey.io/commands/geopos/)                             |
-| `geoRadius`           | [GEORADIUS](https://redis.io/docs/latest/commands/georadius/)                       | [GEORADIUS](https://valkey.io/commands/georadius/)                       |
-| `geoRadiusByMember`   | [GEORADIUSBYMEMBER](https://redis.io/docs/latest/commands/georadiusbymember/)       | [GEORADIUSBYMEMBER](https://valkey.io/commands/georadiusbymember/)       |
-| `geoRadiusByMemberRo` | [GEORADIUSBYMEMBER_RO](https://redis.io/docs/latest/commands/georadiusbymember-ro/) | [GEORADIUSBYMEMBER_RO](https://valkey.io/commands/georadiusbymember-ro/) |
-| `geoRadiusRo`         | [GEORADIUS_RO](https://redis.io/docs/latest/commands/georadius-ro/)                 | [GEORADIUS_RO](https://valkey.io/commands/georadius-ro/)                 |
-| `geoSearch`           | [GEOSEARCH](https://redis.io/docs/latest/commands/geosearch/)                       | [GEOSEARCH](https://valkey.io/commands/geosearch/)                       |
-| `geoSearchStore`      | [GEOSEARCHSTORE](https://redis.io/docs/latest/commands/geosearchstore/)             | [GEOSEARCHSTORE](https://valkey.io/commands/geosearchstore/)             |
+| TypeRedis             | Redis                                                                                   | Valkey                                                                   |
+|-----------------------|-----------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| `geoAdd`              | [GEOADD](https://redis.io/docs/latest/commands/geoadd/)                                 | [GEOADD](https://valkey.io/commands/geoadd/)                             |
+| `geoDist`             | [GEODIST](https://redis.io/docs/latest/commands/geodist/)                               | [GEODIST](https://valkey.io/commands/geodist/)                           |
+| `geoHash`             | [GEOHASH](https://redis.io/docs/latest/commands/geohash/)                               | [GEOHASH](https://valkey.io/commands/geohash/)                           |
+| `geoPos`              | [GEOPOS](https://redis.io/docs/latest/commands/geopos/)                                 | [GEOPOS](https://valkey.io/commands/geopos/)                             |
+| `geoRadius`           | ~~[GEORADIUS](https://redis.io/docs/latest/commands/georadius/)~~                       | [GEORADIUS](https://valkey.io/commands/georadius/)                       |
+| `geoRadiusByMember`   | ~~[GEORADIUSBYMEMBER](https://redis.io/docs/latest/commands/georadiusbymember/)~~       | [GEORADIUSBYMEMBER](https://valkey.io/commands/georadiusbymember/)       |
+| `geoRadiusByMemberRo` | ~~[GEORADIUSBYMEMBER_RO](https://redis.io/docs/latest/commands/georadiusbymember_ro/)~~ | [GEORADIUSBYMEMBER_RO](https://valkey.io/commands/georadiusbymember_ro/) |
+| `geoRadiusRo`         | ~~[GEORADIUS_RO](https://redis.io/docs/latest/commands/georadius_ro/)~~                 | [GEORADIUS_RO](https://valkey.io/commands/georadius_ro/)                 |
+| `geoSearch`           | [GEOSEARCH](https://redis.io/docs/latest/commands/geosearch/)                           | [GEOSEARCH](https://valkey.io/commands/geosearch/)                       |
+| `geoSearchStore`      | [GEOSEARCHSTORE](https://redis.io/docs/latest/commands/geosearchstore/)                 | [GEOSEARCHSTORE](https://valkey.io/commands/geosearchstore/)             |
