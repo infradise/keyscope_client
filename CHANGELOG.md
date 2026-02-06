@@ -1,6 +1,9 @@
 # Changelog
 
 ## 3.8.0
+* **New aliases**: Added complete alias sets for **Valkey** and **Redis** — `Client`, `ClusterClient`, `Pool`, **Exceptions**, **Configuration**, and **Data Models**.  
+    * **Valkey**: newly added.  
+    * **Redis**: restored previously missing aliases.  
 * **Modular Architecture**
     * **New STREAM Commands** 
         * Added full suite of STREAM commands: `xAck`, `xAdd`, `xAutoClaim`, `xClaim`, `xDel`, `xGroup`, `xGroupCreate`, `xGroupCreateConsumer`, `xGroupDelConsumer`, `xGroupDestroy`, `xGroupHelp`, `xGroupSetId`, `xInfo`, `xInfoConsumers`, `xInfoGroups`, `xInfoHelp`, `xInfoStream`, `xLen`, `xPending`, `xRange`, `xRead`, `xReadGroup`, `xRevRange`, `xSetId`, `xTrim`.
