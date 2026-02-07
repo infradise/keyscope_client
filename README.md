@@ -2,7 +2,7 @@
 <div align="center">
   <h1>TypeRedis</h1>
   <p>
-    A high-performance, cluster-aware, type-safe Dart client for Redis, Valkey, and compatible servers.<br>
+    A high-performance, cluster-aware, type-safe Dart client for Redis, Valkey, Dragonfly, and compatible servers.<br>
   </p>
 
   [![pub package](https://img.shields.io/pub/v/typeredis.svg?label=Latest)](https://pub.dev/packages/typeredis)
@@ -44,9 +44,9 @@ Server management, connection handling, and flow control.
 
 ## Usage
 
-**TypeRedis** provides full alias sets for `Redis` and `Valkey`, including Client, ClusterClient, Pool, Exceptions, Configuration, and Data Models. (Check out [Developer Experience Improvements](https://github.com/infradise/TypeRedis/wiki/Developer-Experience-Improvements)).
+**TypeRedis** provides full alias sets for `Redis`, `Valkey` and `Dragonfly`, including Client, ClusterClient, Pool, Exceptions, Configuration, and Data Models. (Check out [Developer Experience Improvements](https://github.com/infradise/TypeRedis/wiki/Developer-Experience-Improvements)).
 
-### 1\-1\. Redis/Valkey Standalone (Basic)
+### 1\-1\. Redis, Valkey, and Dragonfly Standalone (Basic)
 
 <table>
 <tr>
@@ -61,7 +61,6 @@ void main() async {
   final client = RedisClient(
     host: 'localhost', 
     port: 6379, 
-    // username: '', 
     // password: '',
   );
   try {
@@ -88,7 +87,6 @@ void main() async {
   final client = ValkeyClient(
     host: 'localhost', 
     port: 6379, 
-    // username: '', 
     // password: '',
   );
   try {
@@ -104,11 +102,37 @@ void main() async {
 ```
 
 </td>
+<td>
+
+**`For Dragonfly users`**
+
+```dart
+import 'package:typeredis/typeredis.dart';
+
+void main() async {
+  final client = DragonflyClient(
+    host: 'localhost', 
+    port: 6379, 
+    // password: '',
+  );
+  try {
+    await client.connect();
+    await client.set('Hello', 'Welcome to Dragonfly!');
+    print(await client.get('Hello'));
+  } catch (e) {
+    print('Error: $e');
+  } finally {
+    await client.close();
+  }
+}
+```
+
+</td>
 </tr>
 </table>
 
 
-### 1\-2\. Redis/Valkey Standalone (Advanced)
+### 1\-2\. Redis, Valkey, and Dragonfly Standalone (Advanced)
 
 <table>
 <tr>
@@ -168,10 +192,38 @@ void main() async {
 ```
 
 </td>
+<td>
+
+**`For Dragonfly users`**
+
+```dart
+import 'package:typeredis/typeredis.dart';
+
+void main() async {
+  final settings = DragonflyConnectionSettings(
+    host: 'localhost',
+    port: 6379,
+    // useSsl: false,
+    // database: 0,
+  );
+  final client = DragonflyClient.fromSettings(settings);
+  try {
+    await client.connect();
+    await client.set('Hello', 'Welcome to Dragonfly!');
+    print(await client.get('Hello'));
+  } catch (e) {
+    print('Error: $e');
+  } finally {
+    await client.close();
+  }
+}
+```
+
+</td>
 </tr>
 </table>
 
-### 2\. Redis/Valkey Sentinel
+### 2\. Redis, Valkey, and Dragonfly Sentinel
 
 <table>
 <tr>
@@ -229,10 +281,37 @@ void main() async {
 ```
 
 </td>
+<td>
+
+**`For Dragonfly users`**
+
+```dart
+import 'package:typeredis/typeredis.dart';
+
+void main() async {
+  final settings = DragonflyConnectionSettings(
+    host: 'localhost',
+    port: 6379,
+    readPreference: ReadPreference.preferReplica
+  );
+  final client = DragonflyClient.fromSettings(settings);
+  try {
+    await client.connect();
+    await client.set('Hello', 'Welcome to Dragonfly!');
+    print(await client.get('Hello'));
+  } catch (e) {
+    print('Error: $e');
+  } finally {
+    await client.close();
+  }
+}
+```
+
+</td>
 </tr>
 </table>
 
-### 3\. Redis/Valkey Cluster
+### 3\. Redis, Valkey, and Dragonfly Cluster
 
 <table>
 <tr>
@@ -292,6 +371,34 @@ void main() async {
 ```
 
 </td>
+<td>
+
+**`For Dragonfly users`**
+
+```dart
+import 'package:typeredis/typeredis.dart';
+
+void main() async {
+  final nodes = [
+    DragonflyConnectionSettings(
+      host: 'localhost', 
+      port: 7001,
+    )
+  ];
+  final client = DragonflyClusterClient(nodes);
+  try {
+    await client.connect();
+    await client.set('Hello', 'Welcome to Dragonfly!');
+    print(await client.get('Hello'));
+  } catch (e) {
+    print('Error: $e');
+  } finally {
+    await client.close();
+  }
+}
+```
+
+</td>
 </tr>
 </table>
 
@@ -323,8 +430,8 @@ void main() async {
 | **Redis/Valkey Module Detector** | Retrieves module metadata to identify installed extensions <br>(e.g., `json`, `search`, `ldap`, `bf`). |
 | **JSON Module Checker** | Pre-validates JSON module availability before execution. |
 | **Server Metadata Discovery** | Access server details via `client.metadata` (Version, Mode, Server Name, <br>Max Databases) to write adaptive logic for Valkey vs. Redis. |
-| **Enhanced Developer Experience** | Provides full alias sets for `Redis` and `Valkey`—including Exceptions, Configuration, and Data Models <br>(e.g., `RedisException`, `RedisMessage`, `ValkeyException`, `ValkeyMessage`)—to ensure API consistency and simplify backend migration. |
-| **Developer Experience** | Added `RedisClient` and `ValkeyClient` alias and smart redirection handling for better usability and stability. |
+| **Enhanced Developer Experience** | Provides full alias sets for `Redis` and `Valkey`, and `Dragonfly`—including Exceptions, Configuration, and Data Models <br>(e.g., `RedisException`, `RedisMessage`, `ValkeyException`, `ValkeyMessage`, `DragonflyException`, `DragonflyMessage`)—to ensure API consistency and simplify backend migration. |
+| **Developer Experience** | Added `RedisClient` and `ValkeyClient`, `DragonflyClient` alias and smart redirection handling for better usability and stability. |
 | **Type-Safe Exceptions** | Clear distinction between connection errors (`TRConnectionException`), <br>server errors (`TRServerException`), and client errors (`TRClientException`). |
 | **Observability** | Built-in logging. |
 

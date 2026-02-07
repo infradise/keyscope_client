@@ -18,7 +18,7 @@
 ///
 /// It allows users to use the client with familiar class names (e.g.,
 /// [ValkeyClient], [ValkeyException]).
-/// This is a wrapper around `typeredis` to provide a seamless developer
+/// This is a wrapper around `TypeRedis` to provide a seamless developer
 /// experience (DX)
 /// for those migrating from Valkey or preferring Valkey terminology.
 library;

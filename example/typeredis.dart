@@ -18,7 +18,7 @@ import 'package:typeredis/typeredis.dart';
 
 void main() async {
   // -------------------------------------------------------
-  // 1-1. Redis/Valkey Standalone (Basic)
+  // 1-1. Redis, Valkey, and Dragonfly Standalone (Basic)
   // -------------------------------------------------------
 
   // -------------------------------------------------------
@@ -28,7 +28,6 @@ void main() async {
     host: 'localhost',
     port: 6379,
     // password: '',
-    // username: '',
   );
   try {
     await redis.connect();
@@ -47,7 +46,6 @@ void main() async {
     host: 'localhost',
     port: 6379,
     // password: '',
-    // username: '',
   );
   try {
     await valkey.connect();
@@ -57,5 +55,23 @@ void main() async {
     print('Error: $e');
   } finally {
     await valkey.close();
+  }
+
+  // -------------------------------------------------------
+  // For Dragonfly users
+  //
+  final dragonfly = DragonflyClient(
+    host: 'localhost',
+    port: 6379,
+    // password: '',
+  );
+  try {
+    await dragonfly.connect();
+    await dragonfly.set('Hello', 'Welcome to Dragonfly!');
+    print(await dragonfly.get('Hello'));
+  } catch (e) {
+    print('Error: $e');
+  } finally {
+    await dragonfly.close();
   }
 }

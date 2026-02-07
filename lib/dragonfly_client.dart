@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-/// This library provides a Redis-compatible interface.
+/// This library provides a Dragonfly-compatible interface.
 ///
 /// It allows users to use the client with familiar class names (e.g.,
-/// [RedisClient], [RedisException]).
+/// [DragonflyClient], [DragonflyException]).
 /// This is a wrapper around `TypeRedis` to provide a seamless developer
 /// experience (DX)
-/// for those migrating from Redis or preferring Redis terminology.
+/// for those migrating from Dragonfly or preferring Dragonfly terminology.
 library;
 
 import 'typeredis.dart';
@@ -28,41 +28,41 @@ import 'typeredis.dart';
 // --- Clients ---
 
 /// Alias for [TRClient]. Use this for Standalone/Sentinel connections.
-typedef RedisClient = TRClient;
+typedef DragonflyClient = TRClient;
 
 /// Alias for [TRClusterClient]. Use this for Cluster connections.
-typedef RedisClusterClient = TRClusterClient;
+typedef DragonflyClusterClient = TRClusterClient;
 
 /// Alias for [TRPool]. Use this for connection pooling.
-typedef RedisPool = TRPool;
+typedef DragonflyPool = TRPool;
 
 // --- Configuration ---
 
 /// Alias for [TRConnectionSettings].
-typedef RedisConnectionSettings = TRConnectionSettings;
+typedef DragonflyConnectionSettings = TRConnectionSettings;
 
 /// Alias for [TRLogLevel].
-typedef RedisLogLevel = TRLogLevel;
+typedef DragonflyLogLevel = TRLogLevel;
 
 // --- Data Models ---
 
 /// Alias for [TRMessage]. Represents a Pub/Sub message.
-typedef RedisMessage = TRMessage;
+typedef DragonflyMessage = TRMessage;
 
 // --- Exceptions (Crucial for try-catch blocks) ---
 
 /// Alias for [TRException]. The base class for all exceptions.
-typedef RedisException = TRException;
+typedef DragonflyException = TRException;
 
 /// Alias for [TRConnectionException]. Thrown on network/socket errors.
-typedef RedisConnectionException = TRConnectionException;
+typedef DragonflyConnectionException = TRConnectionException;
 
 /// Alias for [TRServerException]. Thrown when the server responds with
 /// an error.
-typedef RedisServerException = TRServerException;
+typedef DragonflyServerException = TRServerException;
 
 /// Alias for [TRClientException]. Thrown on invalid API usage.
-typedef RedisClientException = TRClientException;
+typedef DragonflyClientException = TRClientException;
 
 /// Alias for [TRParsingException]. Thrown on protocol parsing errors.
-typedef RedisParsingException = TRParsingException;
+typedef DragonflyParsingException = TRParsingException;

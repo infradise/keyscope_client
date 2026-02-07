@@ -4,11 +4,17 @@
 * **Modular Architecture**
     * **New GENERIC Commands** 
         * Added full suite of GENERIC commands: `copy`, `del`, `dump`, `exists`, `expire`, `expireAt`, `expireTime`, `keys`, `migrate`, `move`, `objectEncoding`, `objectFreq`, `objectHelp`, `objectIdleTime`, `objectRefCount`, `persist`, `pExpire`, `pExpireAt`, `pExpireTime`, `pTtl`, `randomKey`, `rename`, `renameNx`, `restore`, `scan`, `sort`, `sortRo`, `touch`, `ttl`, `type`, `unlink`, `wait`, `waitAof`.
+* **Dragonfly support**
+    * **New aliases**: Added complete alias set for Dragonfly.
+      * **Dragonfly**: `DragonflyClient`, `DragonflyClusterClient`, `DragonflyPool`, `DragonflyConnectionSettings`, `DragonflyLogLevel`, `DragonflyMessage`, `DragonflyException`, `DragonflyConnectionException`, `DragonflyServerException`, `DragonflyClientException`, `DragonflyParsingException`.
+    * **Metadata Checker**: provides server version extractor and information, etc.
 
 ## 3.8.0
 * **New aliases**: Added complete alias sets for **Valkey** and **Redis** — `Client`, `ClusterClient`, `Pool`, **Exceptions**, **Configuration**, and **Data Models**.  
-    * **Valkey**: newly added.  
+    * **Valkey**: newly added. 
+        * `ValkeyClient`, `ValkeyClusterClient`, `ValkeyPool`, `ValkeyConnectionSettings`, `ValkeyLogLevel`, `ValkeyMessage`, `ValkeyException`, `ValkeyConnectionException`, `ValkeyServerException`, `ValkeyClientException`, `ValkeyParsingException`.
     * **Redis**: restored previously missing aliases.  
+        * `RedisClient`, `RedisClusterClient`, `RedisPool`, `RedisConnectionSettings`, `RedisLogLevel`, `RedisMessage`, `RedisException`, `RedisConnectionException`, `RedisServerException`, `RedisClientException`, `RedisParsingException`
 * **Modular Architecture**
     * **New STREAM Commands** 
         * Added full suite of STREAM commands: `xAck`, `xAdd`, `xAutoClaim`, `xClaim`, `xDel`, `xGroup`, `xGroupCreate`, `xGroupCreateConsumer`, `xGroupDelConsumer`, `xGroupDestroy`, `xGroupHelp`, `xGroupSetId`, `xInfo`, `xInfoConsumers`, `xInfoGroups`, `xInfoHelp`, `xInfoStream`, `xLen`, `xPending`, `xRange`, `xRead`, `xReadGroup`, `xRevRange`, `xSetId`, `xTrim`.

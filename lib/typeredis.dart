@@ -18,6 +18,7 @@
 /// Fully Redis 7.x/8.* compatible.
 library;
 
+export 'dragonfly_client.dart';
 export 'redis_client.dart';
 export 'src/cluster_info.dart';
 export 'src/commands/bitmap/extensions.dart';
