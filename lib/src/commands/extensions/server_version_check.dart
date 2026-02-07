@@ -16,6 +16,12 @@
 
 import '../commands.dart';
 
+/// Mapping between Dragonfly versions and corresponding Redis versions
+const Map<String, String> dragonflyToRedisMap = {
+  '1.36.0': '7.4.0',
+  // '1.40.0': '8.0.0',
+};
+
 /// Extension to add version checking capabilities to any class using
 /// the Commands mixin.
 extension ServerVersionCheck on Commands {
@@ -32,11 +38,37 @@ extension ServerVersionCheck on Commands {
     }
   }
 
+  // /// Internal helper to get the minor version (e.g., "7.2.4" -> 2).
+  // Future<int> get _minorVersion async {
+  //   try {
+  //     final metadata = await getOrFetchMetadata();
+  //     if (metadata.version.isEmpty) return 0;
+  //     final parts = metadata.version.split('.');
+  //     return parts.length > 1 ? int.parse(parts[1]) : 0;
+  //   } catch (_) {
+  //     return 0;
+  //   }
+  // }
+
+  // /// Internal helper to get the patch version (e.g., "7.2.4" -> 4).
+  // Future<int> get _patchVersion async {
+  //   try {
+  //     final metadata = await getOrFetchMetadata();
+  //     if (metadata.version.isEmpty) return 0;
+  //     final parts = metadata.version.split('.');
+  //     return parts.length > 2 ? int.parse(parts[2]) : 0;
+  //   } catch (_) {
+  //     return 0;
+  //   }
+  // }
+
   /// Internal helper to check server name.
   Future<bool> get _isRedis async =>
       (await getOrFetchMetadata()).serverName.toLowerCase() == 'redis';
   Future<bool> get _isValkey async =>
       (await getOrFetchMetadata()).serverName.toLowerCase() == 'valkey';
+  Future<bool> get _isDragonfly async =>
+      (await getOrFetchMetadata()).serverName.toLowerCase() == 'dragonfly';
 
   // ---------------------------------------------------------------------------
   // Public Version Checkers
@@ -62,4 +94,80 @@ extension ServerVersionCheck on Commands {
   /// Returns true if the server is Valkey and version is in the 7.x range.
   Future<bool> isValkey70To80() async =>
       (await _isValkey) && (await _majorVersion) == 7;
+
+  /// Check if Dragonfly version is at least 1.36.0
+  ///
+  /// Dragonfly df-v1.36.0 includes Redis 7.4.
+  ///
+  Future<bool> isDragonfly136OrLater() async {
+    try {
+      // final major = await _majorVersion;
+      // final minor = await _minorVersion;
+      // final patch = await _patchVersion;
+
+      final metadata = await getOrFetchMetadata();
+      // if (metadata.dragonflyVersion.isEmpty) return false;
+
+      if (metadata.version.isEmpty) return false;
+
+      final parts = _parseDragonflyVersion(metadata.version);
+      final major = parts.isNotEmpty ? parts[0] : 0;
+      final minor = parts.length > 1 ? parts[1] : 0;
+      final patch = parts.length > 2 ? parts[2] : 0;
+
+      // Check if Dragonfly >= 1.36.0
+      final isAtLeast136 = (major > 1) ||
+          (major == 1 && minor > 36) ||
+          (major == 1 && minor == 36 && patch >= 0);
+
+      if (isAtLeast136) {
+        // If Dragonfly >= 1.36.0, then check Redis >= 7.0
+        // * Dragonfly == 1.36.0 corresponds to Redis == 7.4
+        return (await _isDragonfly) && (await isRedis70OrLater());
+      }
+
+      return false;
+    } catch (_) {
+      // Return false if any error occurs
+      return false;
+    }
+  }
+
+  /// Parse Dragonfly version string like "df-v1.36.0"
+  List<int> _parseDragonflyVersion(String version) {
+    // Remove prefix "df-v" if present
+    final cleaned = version.replaceFirst('df-v', '');
+    final parts = cleaned.split('.');
+    return parts.map((p) => int.tryParse(p) ?? 0).toList();
+  }
+
+  /// Compare two version strings (major.minor.patch)
+  bool _isVersionGreaterOrEqual(String current, String target) {
+    final currentParts =
+        current.split('.').map((p) => int.tryParse(p) ?? 0).toList();
+    final targetParts =
+        target.split('.').map((p) => int.tryParse(p) ?? 0).toList();
+
+    for (var i = 0; i < 3; i++) {
+      if (currentParts[i] > targetParts[i]) return true;
+      if (currentParts[i] < targetParts[i]) return false;
+    }
+    return true; // equal
+  }
+
+  /// Check if Dragonfly version is at least a mapped version
+  Future<bool> isDragonflyAtLeast(String dfVersion) async {
+    try {
+      final cleaned = dfVersion.replaceFirst('df-v', '');
+      for (final entry in dragonflyToRedisMap.entries) {
+        if (_isVersionGreaterOrEqual(cleaned, entry.key)) {
+          // If Dragonfly >= mapped version, check Redis accordingly
+          return (await _isDragonfly) && (await isRedis70OrLater());
+        }
+      }
+      return false;
+    } catch (_) {
+      return false;
+    }
+  }
 }
