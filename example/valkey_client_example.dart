@@ -132,9 +132,13 @@ Future<void> runCommandExamples(TRClientBase client) async {
     // --- TRANSACTIONS (v0.11.0) ---
     print('\n--- TRANSACTIONS (Atomic Operations) ---');
     try {
+      final txCounter = await client.get('tx:counter');
+      if (txCounter != null) {
+        await client.del(['tx:counter']);
+      }
+
       print('Sending: MULTI');
       await client.multi(); // Start transaction
-
       print("Queueing: SET tx:1 'hello'");
       final setFuture = client.set('tx:1', 'hello'); // Queued
       print('Queueing: INCR tx:counter');
@@ -142,14 +146,14 @@ Future<void> runCommandExamples(TRClientBase client) async {
 
       // Await queued responses (optional)
       print('Awaited SET response: ${await setFuture}'); // Should be 'QUEUED'
-      print('Awaited INCR response: ${await incrFuture}'); // Should be 'QUEUED'
+      print('Awaited INCR response: ${await incrFuture}'); // Should be 0
 
       print('Sending: EXEC');
       final execResponse = await client.exec(); // Execute transaction
 
       print('Received EXEC results: $execResponse'); // Should be [OK, 1]
 
-      // Example of DISCARD (uncomment to test)
+      // Example of DISCARD
       print('Sending: MULTI... SET... DISCARD');
       await client.multi();
       await client.set('tx:2', 'discarded');

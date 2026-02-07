@@ -32,6 +32,8 @@ on:
 
   # pull_request:
 
+  workflow_dispatch:
+
 jobs:
   test:
     name: 🧪 Test ${{ matrix.engine }}
@@ -48,6 +50,10 @@ jobs:
             image_name: "valkey/valkey-bundle:latest"
             binary_name: "valkey"
             ssl_dir: "valkey"
+          # - engine: dragonfly
+          #   image_name: "docker.dragonflydb.io/dragonflydb/dragonfly:latest"
+          #   binary_name: "dragonfly"
+          #   ssl_dir: "dragonfly"
 
     steps:
       - uses: actions/checkout@v6
@@ -94,6 +100,7 @@ jobs:
           CI_IMAGE_NAME: ${{ matrix.image_name }}
           CI_BINARY_NAME: ${{ matrix.binary_name }}
           ABS_CERT_PATH: ${{ github.workspace }}/docs/testenv/${{ matrix.test_dir_name }}/tests/tls
+          # DRAGONFLY_CLUSTER_ARGS: "--cluster_mode=yes"
         run: |
           echo "Starting Cluster (7001-7006)..."
           docker compose -f docker-compose-cluster.yaml -p ${{ matrix.binary_name }}-cluster-nonssl up -d

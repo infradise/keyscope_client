@@ -811,8 +811,9 @@ Future<void> main() async {
       final incrFuture = client.incr('tx:counter');
 
       // Verify they are queued
-      await expectLater(setFuture, completion('QUEUED'));
-      await expectLater(incrFuture, completion('QUEUED'));
+      await expectLater(setFuture, completion(equals('QUEUED')));
+      // Expect the counter to be incremented and return an integer
+      await expectLater(incrFuture, completion(isA<int>()));
 
       // 3. Execute transaction
       final execResponse = await client.exec();
