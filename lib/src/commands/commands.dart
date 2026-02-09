@@ -31,7 +31,28 @@ mixin Commands {
   ///
   /// Sends a command to the server.
   /// The interface for sending commands to the Redis/Valkey server.
-  Future<dynamic> execute(List<String> command);
+  /// ```dart
+  /// Future<dynamic> execute(List<String> command);
+  /// ```
+  ///
+  /// Changed from `List<String>` to `List<dynamic>` to support binary data.
+  /// Implementations must handle String (UTF-8) and `List<int>` (Raw Bytes).
+  ///
+  /// Executes a Redis command with dynamic arguments.
+  /// This is required for commands that send binary data (e.g., RESTORE)
+  /// or types other than String.
+  ///
+  /// Implementations should handle:
+  /// - String: Encode to UTF-8
+  /// - `List<int>`: Send raw bytes (Binary Safe)
+  /// - Other: Convert to String then encode
+  ///
+  /// NOTE:
+  /// Executes a Redis command with dynamic arguments (String, `List<int>`,
+  /// int, etc.).
+  /// This is required for binary-safe commands like RESTORE or SET (with
+  /// binary data).
+  Future<dynamic> execute(List<dynamic> command);
 
   /// Checks if the connected server is Redis.
   Future<bool> isRedisServer();

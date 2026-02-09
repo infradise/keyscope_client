@@ -43,8 +43,7 @@ Future<void> main() async {
   final expireTime = await client.expireTime('event:new_year');
   print('   Current Time (Unix): ${now.millisecondsSinceEpoch ~/ 1000}');
   print('   Expire At (Unix):    $expireTime');
-  print(
-      '   Difference:          '
+  print('   Difference:          '
       '${expireTime - (now.millisecondsSinceEpoch ~/ 1000)}s');
 
   // 2. Precise Absolute Expiration (PEXPIREAT, PEXPIRETIME)

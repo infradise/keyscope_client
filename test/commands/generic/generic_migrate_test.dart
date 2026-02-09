@@ -82,8 +82,10 @@ void main() {
       await client.set(k2, 'v2');
 
       try {
-        // When using 'keys' parameter, the third argument (key) must be empty string "".
-        // The implementation should handle this automatically or we pass keys explicitly.
+        // When using 'keys' parameter, the third argument (key) must be empty
+        // string "".
+        // The implementation should handle this automatically or we pass keys
+        // explicitly.
         await client.migrate(
           '127.0.0.1',
           9999, // Dead port
@@ -97,14 +99,15 @@ void main() {
         );
         fail('Should have thrown IOERR');
       } catch (e) {
-        // If we get IOERR, it means Redis parsed [COPY, REPLACE, AUTH, KEYS...] correctly
-        // and only failed at the network connection step.
+        // If we get IOERR, it means Redis parsed [COPY, REPLACE, AUTH,
+        // KEYS...] correctly and only failed at the network connection step.
         expect(e.toString(), contains('IOERR'));
       }
     });
 
     /// Test 3: Real Migration (Conditional)
-    /// Performs a real migration ONLY IF a Redis instance is detected at targetHost:targetPort.
+    /// Performs a real migration ONLY IF a Redis instance is detected at
+    /// targetHost:targetPort.
     test('Real Migration: Success Case (Target 6380)', () async {
       // 1. Check if target instance is running
       var isTargetUp = false;
@@ -114,8 +117,8 @@ void main() {
         socket.destroy();
         isTargetUp = true;
       } catch (_) {
-        print(
-            '   [Info] Target Redis ($targetPort) down. Skipping real migration test.');
+        print('   [Info] Target Redis ($targetPort) down. '
+            'Skipping real migration test.');
       }
 
       // 2. Execute Test only if Target is Up
@@ -138,7 +141,8 @@ void main() {
         // Verify Source (Since we used COPY, it should still be here)
         expect(await client.exists([key]), equals(1));
 
-        // Note: To verify Target strictly, we would need a second client connection.
+        // Note: To verify Target strictly, we would need a second
+        // client connection.
         // But receiving 'OK' from Source confirms the transfer succeeded.
       }
     });
