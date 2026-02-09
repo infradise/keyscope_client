@@ -1,12 +1,19 @@
 <br />
 <div align="center">
-  <h1>TypeRedis</h1>
+  <h1>keyscope_client</h1>
   <p>
-    A high-performance, cluster-aware, type-safe Dart client for Redis, Valkey, Dragonfly, and compatible servers.<br>
+  <img src="https://download.keyscope.dev/logo.png" alt="Keyscope Logo" width="64">
+  <br>
+  </p>
+  <p>
+    The ultimate multi-engine client for Redis, Valkey, and Dragonfly. 
+    <br><br>
+    A high-performance, cluster-aware SDK with seamless polymorphic aliases.
+    Switch identities seamlessly with built-in polymorphic aliases.
   </p>
 
-  [![pub package](https://img.shields.io/pub/v/typeredis.svg?label=Latest)](https://pub.dev/packages/typeredis)
-  [![CT](https://github.com/infradise/TypeRedis/actions/workflows/typeredis_ct.yaml/badge.svg)](https://github.com/infradise/TypeRedis/actions/workflows/typeredis_ct.yaml)
+  [![pub package](https://img.shields.io/pub/v/keyscope_client.svg?label=Latest)](https://pub.dev/packages/keyscope_client)
+  [![CT](https://github.com/infradise/keyscope_client/actions/workflows/keyscope_client_ct.yaml/badge.svg)](https://github.com/infradise/keyscope_client/actions/workflows/keyscope_client_ct.yaml)
   [![pub package](https://img.shields.io/pub/v/keyscope.svg?label=Keyscope&color=blue)](https://pub.dev/packages/keyscope)
 
   <p>
@@ -19,32 +26,35 @@
 
 ## Supported Commands
 
+> **Not just basic strings.** Our goal is to provide a 100% complete command experience across all data types **in the Dart/Flutter ecosystem.**
+
 ### Core Data Types
 
 Basic data structures and generic key operations.
 
-* [STRING](https://github.com/infradise/TypeRedis/blob/main/docs/commands/STRING.md) / [HASH](https://github.com/infradise/TypeRedis/blob/main/docs/commands/HASH.md) / [LIST](https://github.com/infradise/TypeRedis/blob/main/docs/commands/LIST.md) / [SET](https://github.com/infradise/TypeRedis/blob/main/docs/commands/SET.md) / [SORTED SET](https://github.com/infradise/TypeRedis/blob/main/docs/commands/SORTED-SET.md)
-* [BITMAP](https://github.com/infradise/TypeRedis/blob/main/docs/commands/BITMAP.md) / [HYPERLOGLOG](https://github.com/infradise/TypeRedis/blob/main/docs/commands/HYPERLOGLOG.md) / [GEOSPATIAL INDICES](https://github.com/infradise/TypeRedis/blob/main/docs/commands/GEOSPATIAL-INDICES.md) / [STREAM](https://github.com/infradise/TypeRedis/blob/main/docs/commands/STREAM.md)
-* [GENERIC](https://github.com/infradise/TypeRedis/blob/main/docs/commands/GENERIC.md) (Keys, Expiration, etc.)
+* [STRING](https://github.com/infradise/keyscope_client/blob/main/docs/commands/STRING.md) / [HASH](https://github.com/infradise/keyscope_client/blob/main/docs/commands/HASH.md) / [LIST](https://github.com/infradise/keyscope_client/blob/main/docs/commands/LIST.md) / [SET](https://github.com/infradise/keyscope_client/blob/main/docs/commands/SET.md) / [SORTED SET](https://github.com/infradise/keyscope_client/blob/main/docs/commands/SORTED-SET.md)
+* [BITMAP](https://github.com/infradise/keyscope_client/blob/main/docs/commands/BITMAP.md) / [HYPERLOGLOG](https://github.com/infradise/keyscope_client/blob/main/docs/commands/HYPERLOGLOG.md) / [GEOSPATIAL INDICES](https://github.com/infradise/keyscope_client/blob/main/docs/commands/GEOSPATIAL-INDICES.md) / [STREAM](https://github.com/infradise/keyscope_client/blob/main/docs/commands/STREAM.md)
+* [GENERIC](https://github.com/infradise/keyscope_client/blob/main/docs/commands/GENERIC.md) (Keys, Expiration, etc.)
 
 ### Modules & Extensions
 
 Advanced data types and query engines (JSON, Search, Probabilistic structures).
 
-* [JSON](https://github.com/infradise/TypeRedis/blob/main/docs/commands/JSON.md) / [SEARCH](https://github.com/infradise/TypeRedis/blob/main/docs/commands/SEARCH.md) / [TIME SERIES](https://github.com/infradise/TypeRedis/blob/main/docs/commands/TIME-SERIES.md) / [VECTOR SET](https://github.com/infradise/TypeRedis/blob/main/docs/commands/VECTOR-SET.md)
-* [BLOOM FILTER](https://github.com/infradise/TypeRedis/blob/main/docs/commands/BLOOM-FILTER.md) / [CUCKOO FILTER](https://github.com/infradise/TypeRedis/blob/main/docs/commands/CUCKOO-FILTER.md)
-* [COUNT-MIN SKETCH](https://github.com/infradise/TypeRedis/blob/main/docs/commands/COUNT-MIN-SKETCH.md) / [T-DIGEST SKETCH](https://github.com/infradise/TypeRedis/blob/main/docs/commands/T-DIGEST-SKETCH.md) / [TOP-K SKETCH](https://github.com/infradise/TypeRedis/blob/main/docs/commands/TOP-K-SKETCH.md)
+* [JSON](https://github.com/infradise/keyscope_client/blob/main/docs/commands/JSON.md) / [SEARCH](https://github.com/infradise/keyscope_client/blob/main/docs/commands/SEARCH.md) / [TIME SERIES](https://github.com/infradise/keyscope_client/blob/main/docs/commands/TIME-SERIES.md) / [VECTOR SET](https://github.com/infradise/keyscope_client/blob/main/docs/commands/VECTOR-SET.md)
+* [BLOOM FILTER](https://github.com/infradise/keyscope_client/blob/main/docs/commands/BLOOM-FILTER.md) / [CUCKOO FILTER](https://github.com/infradise/keyscope_client/blob/main/docs/commands/CUCKOO-FILTER.md)
+* [COUNT-MIN SKETCH](https://github.com/infradise/keyscope_client/blob/main/docs/commands/COUNT-MIN-SKETCH.md) / [T-DIGEST SKETCH](https://github.com/infradise/keyscope_client/blob/main/docs/commands/T-DIGEST-SKETCH.md) / [TOP-K SKETCH](https://github.com/infradise/keyscope_client/blob/main/docs/commands/TOP-K-SKETCH.md)
 
 ### System & Operations
 
 Server management, connection handling, and flow control.
 
-* [CONNECTION](https://github.com/infradise/TypeRedis/blob/main/docs/commands/CONNECTION.md) / [SERVER](https://github.com/infradise/TypeRedis/blob/main/docs/commands/SERVER.md) / [CLUSTER](https://github.com/infradise/TypeRedis/blob/main/docs/commands/CLUSTER.md)
-* [PUBSUB](https://github.com/infradise/TypeRedis/blob/main/docs/commands/PUBSUB.md) / [TRANSACTIONS](https://github.com/infradise/TypeRedis/blob/main/docs/commands/TRANSACTIONS.md) / [SCRIPTING AND FUNCTIONS](https://github.com/infradise/TypeRedis/blob/main/docs/commands/SCRIPTING-AND-FUNCTIONS.md)
+* [CONNECTION](https://github.com/infradise/keyscope_client/blob/main/docs/commands/CONNECTION.md) / [SERVER](https://github.com/infradise/keyscope_client/blob/main/docs/commands/SERVER.md) / [CLUSTER](https://github.com/infradise/keyscope_client/blob/main/docs/commands/CLUSTER.md)
+* [PUBSUB](https://github.com/infradise/keyscope_client/blob/main/docs/commands/PUBSUB.md) / [TRANSACTIONS](https://github.com/infradise/keyscope_client/blob/main/docs/commands/TRANSACTIONS.md) / [SCRIPTING AND FUNCTIONS](https://github.com/infradise/keyscope_client/blob/main/docs/commands/SCRIPTING-AND-FUNCTIONS.md)
 
 ## Usage
 
-**TypeRedis** provides full alias sets for `Redis`, `Valkey` and `Dragonfly`, including Client, ClusterClient, Pool, Exceptions, Configuration, and Data Models. (Check out [Developer Experience Improvements](https://github.com/infradise/TypeRedis/wiki/Developer-Experience-Improvements)).
+> **KeyscopeClient** provides a unified API with full alias sets for **Redis**, **Valkey**, and **Dragonfly** (including Client, ClusterClient, Pool, Exceptions, Configuration, and Data Models). Whether you prefer engine-specific naming or a unified approach, we've got you covered. (Check out [Developer Experience Improvements](https://github.com/infradise/keyscope_client/wiki/Developer-Experience-Improvements)).
+
 
 ### 1\-1\. Redis, Valkey, and Dragonfly Standalone (Basic)
 
@@ -55,7 +65,7 @@ Server management, connection handling, and flow control.
 **`For Redis users`**
 
 ```dart
-import 'package:typeredis/typeredis.dart';
+import 'package:keyscope_client/keyscope_client.dart';
 
 void main() async {
   final client = RedisClient(
@@ -81,7 +91,7 @@ void main() async {
 **`For Valkey users`**
 
 ```dart
-import 'package:typeredis/typeredis.dart';
+import 'package:keyscope_client/keyscope_client.dart';
 
 void main() async {
   final client = ValkeyClient(
@@ -107,7 +117,7 @@ void main() async {
 **`For Dragonfly users`**
 
 ```dart
-import 'package:typeredis/typeredis.dart';
+import 'package:keyscope_client/keyscope_client.dart';
 
 void main() async {
   final client = DragonflyClient(
@@ -141,7 +151,7 @@ void main() async {
 **`For Redis users`**
 
 ```dart
-import 'package:typeredis/typeredis.dart';
+import 'package:keyscope_client/keyscope_client.dart';
 
 void main() async {
   final settings = RedisConnectionSettings(
@@ -169,7 +179,7 @@ void main() async {
 **`For Valkey users`**
 
 ```dart
-import 'package:typeredis/typeredis.dart';
+import 'package:keyscope_client/keyscope_client.dart';
 
 void main() async {
   final settings = ValkeyConnectionSettings(
@@ -197,7 +207,7 @@ void main() async {
 **`For Dragonfly users`**
 
 ```dart
-import 'package:typeredis/typeredis.dart';
+import 'package:keyscope_client/keyscope_client.dart';
 
 void main() async {
   final settings = DragonflyConnectionSettings(
@@ -232,7 +242,7 @@ void main() async {
 **`For Redis users`**
 
 ```dart
-import 'package:typeredis/typeredis.dart';
+import 'package:keyscope_client/keyscope_client.dart';
 
 void main() async {
   final settings = RedisConnectionSettings(
@@ -259,7 +269,7 @@ void main() async {
 **`For Valkey users`**
 
 ```dart
-import 'package:typeredis/typeredis.dart';
+import 'package:keyscope_client/keyscope_client.dart';
 
 void main() async {
   final settings = ValkeyConnectionSettings(
@@ -286,7 +296,7 @@ void main() async {
 **`For Dragonfly users`**
 
 ```dart
-import 'package:typeredis/typeredis.dart';
+import 'package:keyscope_client/keyscope_client.dart';
 
 void main() async {
   final settings = DragonflyConnectionSettings(
@@ -320,7 +330,7 @@ void main() async {
 **`For Redis users`**
 
 ```dart
-import 'package:typeredis/typeredis.dart';
+import 'package:keyscope_client/keyscope_client.dart';
 
 void main() async {
   final nodes = [
@@ -348,7 +358,7 @@ void main() async {
 **`For Valkey users`**
 
 ```dart
-import 'package:typeredis/typeredis.dart';
+import 'package:keyscope_client/keyscope_client.dart';
 
 void main() async {
   final nodes = [
@@ -376,7 +386,7 @@ void main() async {
 **`For Dragonfly users`**
 
 ```dart
-import 'package:typeredis/typeredis.dart';
+import 'package:keyscope_client/keyscope_client.dart';
 
 void main() async {
   final nodes = [
@@ -432,19 +442,21 @@ void main() async {
 | **Server Metadata Discovery** | Access server details via `client.metadata` (Version, Mode, Server Name, <br>Max Databases) to write adaptive logic for Valkey vs. Redis. |
 | **Enhanced Developer Experience** | Provides full alias sets for `Redis` and `Valkey`, and `Dragonfly`—including Exceptions, Configuration, and Data Models <br>(e.g., `RedisException`, `RedisMessage`, `ValkeyException`, `ValkeyMessage`, `DragonflyException`, `DragonflyMessage`)—to ensure API consistency and simplify backend migration. |
 | **Developer Experience** | Added `RedisClient` and `ValkeyClient`, `DragonflyClient` alias and smart redirection handling for better usability and stability. |
-| **Type-Safe Exceptions** | Clear distinction between connection errors (`TRConnectionException`), <br>server errors (`TRServerException`), and client errors (`TRClientException`). |
+| **Type-Safe Exceptions** | Clear distinction between connection errors (`KeyscopeClientConnectionException`), <br>server errors (`KeyscopeClientServerException`), and client errors (`KeyscopeClientClientException`). |
 | **Observability** | Built-in logging. |
+| **Multi-Engine Ready** | Built for the modern ecosystem (Redis, Valkey, Dragonfly). |
+| **Identity Switch** | Use `RedisClient`, `ValkeyClient`, or `DragonflyClient` — whatever suits your project's heart. |
 
 ### 🔌 Connection & Configuration
 
 | Feature | Description |
 | :------ | :---------- |
 | **Smart Database Selection** | First-class support for selecting databases (0-15+) on connection. <br>Automatically detects **Valkey 9.0+ Numbered Clusters** to enable multi-database support <br>in cluster mode, while maintaining backward compatibility with Redis Clusters (DB 0 only). |
-| **Explicit Replica Configuration** | Added `explicitReplicas` to `TRConnectionSettings` to manually define replica nodes, <br>solving connectivity issues in environments where auto-discovery fails. |
-| **Cluster Client** | **TRClusterClient:** Dedicated client for automatic command routing in cluster mode. <br>We recommend using `TRClient` for Standalone/Sentinel and `TRClusterClient` for cluster environments. |
-| **Built-in Connection Pooling** | `TRPool` for efficient connection management (used by Standalone and Cluster clients). |
+| **Explicit Replica Configuration** | Added `explicitReplicas` to `KeyscopeClientConnectionSettings` to manually define replica nodes, <br>solving connectivity issues in environments where auto-discovery fails. |
+| **Cluster Client** | **KeyscopeClusterClient:** Dedicated client for automatic command routing in cluster mode. <br>We recommend using `KeyscopeClientClient` for Standalone/Sentinel and `KeyscopeClientClusterClient` for cluster environments. |
+| **Built-in Connection Pooling** | `KeyscopeClientPool` for efficient connection management (used by Standalone and Cluster clients). |
 | **Connection Pool Hardening** | **Smart Release Mechanism:** Prevents pool pollution by automatically detecting and <br>discarding "dirty" connections (e.g., inside Transaction or Pub/Sub) upon release. |
-| **Command Timeout** | Includes a built-in command timeout (via `TRConnectionSettings`) <br>to prevent client hangs on non-responsive servers. |
+| **Command Timeout** | Includes a built-in command timeout (via `KeyscopeClientConnectionSettings`) <br>to prevent client hangs on non-responsive servers. |
 
 ### 🔒 Security & Core
 
