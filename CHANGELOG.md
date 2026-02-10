@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.1.0
+* **Modular Architecture**
+    * **New SEARCH Commands**  
+        * Added a full suite of SEARCH commands: `ftAggregate`, `ftAliasAdd`, `ftAliasDel`, `ftAliasUpdate`, `ftAlter`, `ftConfigGet`, `ftConfigSet`, `ftCreate`, `ftCursorDel`, `ftCursorRead`, `ftDictAdd`, `ftDictDel`, `ftDictDump`, `ftDropIndex`, `ftExplain`, `ftExplainCli`, `ftHybrid`, `ftInfo`, `ftList`, `ftProfile`, `ftSearch`, `ftSpellCheck`, `ftSynDump`, `ftSynUpdate`, `ftTagVals`
+
 ## 4.0.0
 * **Modular Architecture**
     * **New GENERIC Commands**  
