@@ -109,6 +109,9 @@ void main() {
     /// Performs a real migration ONLY IF a Redis instance is detected at
     /// targetHost:targetPort.
     test('Real Migration: Success Case (Target 6380)', () async {
+      // TODO: Add to test
+      markTestSkipped('Skipping: This feature requires two instances.');
+
       // 1. Check if target instance is running
       var isTargetUp = false;
       try {

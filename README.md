@@ -14,7 +14,7 @@
 
   [![pub package](https://img.shields.io/pub/v/keyscope_client.svg?label=Latest)](https://pub.dev/packages/keyscope_client)
   [![CT](https://github.com/infradise/keyscope_client/actions/workflows/keyscope_client_ct.yaml/badge.svg)](https://github.com/infradise/keyscope_client/actions/workflows/keyscope_client_ct.yaml)
-  [![pub package](https://img.shields.io/pub/v/keyscope.svg?label=Keyscope&color=blue)](https://pub.dev/packages/keyscope)
+  [![pub package](https://img.shields.io/pub/v/keyscope.svg?label=keyscope&color=blue)](https://pub.dev/packages/keyscope)
 
   <p>
     <a href="#supported-commands">Supported Commands</a> •

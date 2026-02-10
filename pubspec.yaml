@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 name: keyscope_client
-description: The ultimate multi-engine client for Redis, Valkey, and Dragonfly. A high-performance, cluster-aware SDK with seamless polymorphic aliases. Switch identities seamlessly with built-in polymorphic aliases.
+description: The ultimate multi-engine client for Redis, Valkey, and Dragonfly. A high-performance, cluster-aware SDK with seamless polymorphic aliases.
 version: 4.0.0
 repository: https://github.com/infradise/keyscope_client
 homepage: https://github.com/infradise/keyscope_client
