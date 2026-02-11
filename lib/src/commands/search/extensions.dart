@@ -14,4 +14,28 @@
  * limitations under the License.
  */
 
-export 'commands/template.dart';
+export 'commands/ft_aggregate.dart';
+export 'commands/ft_alias_add.dart';
+export 'commands/ft_alias_del.dart';
+export 'commands/ft_alias_update.dart';
+export 'commands/ft_alter.dart';
+export 'commands/ft_config_get.dart';
+export 'commands/ft_config_set.dart';
+export 'commands/ft_create.dart';
+export 'commands/ft_cursor_del.dart';
+export 'commands/ft_cursor_read.dart';
+export 'commands/ft_dict_add.dart';
+export 'commands/ft_dict_del.dart';
+export 'commands/ft_dict_dump.dart';
+export 'commands/ft_drop_index.dart';
+export 'commands/ft_explain.dart';
+export 'commands/ft_explain_cli.dart';
+export 'commands/ft_hybrid.dart';
+export 'commands/ft_info.dart';
+export 'commands/ft_list.dart';
+export 'commands/ft_profile.dart';
+export 'commands/ft_search.dart';
+export 'commands/ft_spell_check.dart';
+export 'commands/ft_syn_dump.dart';
+export 'commands/ft_syn_update.dart';
+export 'commands/ft_tag_vals.dart';

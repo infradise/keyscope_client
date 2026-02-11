@@ -70,6 +70,10 @@ extension ServerVersionCheck on Commands {
   Future<bool> get _isDragonfly async =>
       (await getOrFetchMetadata()).serverName.toLowerCase() == 'dragonfly';
 
+  Future<bool> get isRedis async => _isRedis;
+  Future<bool> get isValkey async => _isValkey;
+  Future<bool> get isDragonfly async => _isDragonfly;
+
   // ---------------------------------------------------------------------------
   // Public Version Checkers
   // ---------------------------------------------------------------------------
@@ -169,5 +173,37 @@ extension ServerVersionCheck on Commands {
     } catch (_) {
       return false;
     }
+  }
+
+  Future<bool> isRedisOnlyCommand(String commandName) async {
+    final listRedisOnlyCommands = [
+      'FT.AGGREGATE',
+      'FT.ALIASADD',
+      'FT.ALIASDEL',
+      'FT.ALIASUPDATE',
+      'FT.ALTER',
+      'FT.CONFIG GET',
+      'FT.CONFIG SET',
+      // 'FT.CREATE',
+      'FT.CURSOR DEL',
+      'FT.CURSOR READ',
+      'FT.DICTADD',
+      'FT.DICTDEL',
+      'FT.DICTDUMP',
+      // 'FT.DROPINDEX',
+      'FT.EXPLAIN',
+      'FT.EXPLAINCLI',
+      'FT.HYBRID',
+      // 'FT.INFO',
+      // 'FT._LIST',
+      'FT.PROFILE',
+      // 'FT.SEARCH',
+      'FT.SPELLCHECK',
+      'FT.SYNDUMP',
+      'FT.SYNUPDATE',
+      'FT.TAGVALS'
+    ];
+
+    return listRedisOnlyCommands.contains(commandName);
   }
 }

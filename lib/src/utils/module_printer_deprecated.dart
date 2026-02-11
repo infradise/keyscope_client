@@ -19,7 +19,7 @@
 /// [rawModuleList] is the raw response from 'MODULE LIST' command.
 /// Example input: [[name, json, ver, 10002...], [name, search...]]
 @Deprecated('Will be removed in the future.')
-void printPrettyModuleList1(List<dynamic> rawModuleList) {
+void deprecatedPrintPrettyModuleList(List<dynamic> rawModuleList) {
   if (rawModuleList.isEmpty) {
     print('No modules loaded.');
     return;

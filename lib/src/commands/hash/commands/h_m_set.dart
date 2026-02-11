@@ -35,7 +35,7 @@ extension HMSetCommand on HashCommands {
   ///
   /// [data] is a map of field-value pairs to set.
   /// Returns the number of fields that were added (new fields).
-  Future<int> hMSet(String key, Map<String, String> data) async {
+  Future<int> hMSet(String key, Map<String, dynamic> data) async {
     if (data.isEmpty) return 0;
 
     // Use HSET instead of HMSET as HMSET is deprecated in newer Redis versions
@@ -44,7 +44,8 @@ extension HMSetCommand on HashCommands {
     final cmd = <String>['HMSET', key];
     data.forEach((field, value) {
       cmd.add(field);
-      cmd.add(value);
+      // cmd.add(value);
+      cmd.add(value.toString());
     });
 
     return executeInt(cmd);

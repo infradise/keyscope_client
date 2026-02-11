@@ -16,4 +16,20 @@
 
 import '../commands.dart' show SearchCommands;
 
-extension SearchTemplateCommand on SearchCommands {}
+extension FtAliasDelCommand on SearchCommands {
+  /// FT.ALIASDEL alias
+  ///
+  /// Removes an alias from an index.
+  ///
+  /// [alias]: The alias to remove.
+  /// [forceRun]: If true, attempts to execute even if connected to Valkey.
+  ///
+  /// Note: Not currently supported in Valkey.
+  Future<dynamic> ftAliasDel(
+    String alias, {
+    bool forceRun = false,
+  }) async {
+    await checkValkeySupport('FT.ALIASDEL', forceRun);
+    return execute(<dynamic>['FT.ALIASDEL', alias]);
+  }
+}
