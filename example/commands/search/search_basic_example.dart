@@ -15,11 +15,18 @@
  */
 
 import 'package:keyscope_client/keyscope_client.dart';
+import 'package:keyscope_client/src/commands/extensions/server_version_check.dart'
+    show ServerVersionCheck;
 
 Future<void> main() async {
   // 1. Connection Setup
   final client = KeyscopeClient(host: 'localhost', port: 6379);
   await client.connect();
+
+  if (await client.isValkey) {
+    print('Skipping: This feature is supported on Redis only.');
+    return;
+  }
 
   // Clean start: Remove existing data to avoid conflicts
   await client.flushAll();
@@ -39,7 +46,7 @@ Future<void> main() async {
       schema: ['name', 'TEXT', 'age', 'NUMERIC'],
     );
   } catch (e) {
-    print('Error creating index (might already exist): $e');
+    print('Error creating index: $e');
   }
 
   // 3. Add Data (Standard Redis HSET)
