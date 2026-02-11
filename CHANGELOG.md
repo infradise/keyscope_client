@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.2.0
+* **Modular Architecture**
+    * **New TIME SERIES Commands**  
+        * Added a full suite of TIME SERIES commands: `tsAdd`, `tsAlter`, `tsCreate`, `tsCreateRule`, `tsDecrBy`, `tsDel`, `tsDeleteRule`, `tsGet`, `tsIncrBy`, `tsInfo`, `tsMAdd`, `tsMGet`, `tsMRange`, `tsMRevRange`, `tsQueryIndex`, `tsRange`, `tsRevRange`
+
 ## 4.1.0
 * **Modular Architecture**
     * **New SEARCH Commands**  
