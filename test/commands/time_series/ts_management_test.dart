@@ -20,6 +20,20 @@ import 'package:test/test.dart';
 void main() {
   group('Time Series - Management & Rules', () {
     late KeyscopeClient client;
+    var isRedis = false;
+    const port = 6379;
+
+    setUpAll(() async {
+      final tempClient = KeyscopeClient(host: 'localhost', port: port);
+      try {
+        await tempClient.connect();
+        isRedis = await tempClient.isRedisServer();
+      } catch (e) {
+        print('Warning: Failed to check server type in setUpAll: $e');
+      } finally {
+        await tempClient.close();
+      }
+    });
 
     setUp(() async {
       client = KeyscopeClient(host: 'localhost', port: 6379);
@@ -28,50 +42,68 @@ void main() {
     });
 
     tearDown(() async {
+      if (isRedis) {
+        try {
+          if (client.isConnected) {
+            await client.close();
+          }
+        } catch (_) {}
+      }
+
       await client.disconnect();
     });
 
-    test('TS.CREATERULE, TS.DELETERULE', () async {
+    void testRedis(String description, Future<void> Function() body) {
+      test(description, () async {
+        if (!isRedis) {
+          markTestSkipped('Skipping: This feature is supported on Redis only.');
+          return;
+        }
+        await body();
+      });
+    }
+
+    testRedis('TS.CREATERULE, TS.DELETERULE', () async {
       const sourceKey = 'ts:source';
       const destKey = 'ts:compacted';
 
-      await client.tsCreate(sourceKey, forceRun: true);
-      await client.tsCreate(destKey, forceRun: true);
+      await client.tsCreate(sourceKey, forceRun: false);
+      await client.tsCreate(destKey, forceRun: false);
 
       // 1. TS.CREATERULE
       // Create rule: Aggregate 'avg' into 5000ms buckets
       await client.tsCreateRule(sourceKey, destKey, 'avg', 5000,
-          forceRun: true);
+          forceRun: false);
 
       // Verify via TS.INFO
-      final info = await client.tsInfo(sourceKey, forceRun: true);
+      final info = await client.tsInfo(sourceKey, forceRun: false);
       expect(info.toString(), contains(destKey));
 
       // 2. TS.DELETERULE
-      await client.tsDeleteRule(sourceKey, destKey, forceRun: true);
+      await client.tsDeleteRule(sourceKey, destKey, forceRun: false);
 
       // Verify deletion
-      final infoAfter = await client.tsInfo(sourceKey, forceRun: true);
+      final infoAfter = await client.tsInfo(sourceKey, forceRun: false);
       expect(infoAfter.toString(), isNot(contains(destKey)));
     });
 
-    test('TS.ALTER, TS.INFO, TS.QUERYINDEX', () async {
+    testRedis('TS.ALTER, TS.INFO, TS.QUERYINDEX', () async {
       const key = 'ts:manage';
       await client.tsCreate(key,
-          options: ['LABELS', 'ver', '1'], forceRun: true);
+          options: ['LABELS', 'ver', '1'], forceRun: false);
 
       // 1. TS.ALTER
       // Change label
       await client.tsAlter(key,
-          options: ['LABELS', 'ver', '2'], forceRun: true);
+          options: ['LABELS', 'ver', '2'], forceRun: false);
 
       // 2. TS.INFO
-      final info = await client.tsInfo(key, forceRun: true);
+      final info = await client.tsInfo(key, forceRun: false);
       expect(info.toString(), contains('ver'));
       expect(info.toString(), contains('2'));
 
       // 3. TS.QUERYINDEX
-      final keys = await client.tsQueryIndex(['ver=2'], forceRun: true);
+      final keys = await client.tsQueryIndex(['ver=2'], forceRun: false);
       expect(keys, contains(key));
     });
   });

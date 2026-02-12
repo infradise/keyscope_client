@@ -20,6 +20,20 @@ import 'package:test/test.dart';
 void main() {
   group('Time Series - Range & Batch', () {
     late KeyscopeClient client;
+    var isRedis = false;
+    const port = 6379;
+
+    setUpAll(() async {
+      final tempClient = KeyscopeClient(host: 'localhost', port: port);
+      try {
+        await tempClient.connect();
+        isRedis = await tempClient.isRedisServer();
+      } catch (e) {
+        print('Warning: Failed to check server type in setUpAll: $e');
+      } finally {
+        await tempClient.close();
+      }
+    });
 
     setUp(() async {
       client = KeyscopeClient(host: 'localhost', port: 6379);
@@ -28,29 +42,47 @@ void main() {
     });
 
     tearDown(() async {
+      if (isRedis) {
+        try {
+          if (client.isConnected) {
+            await client.close();
+          }
+        } catch (_) {}
+      }
+
       await client.disconnect();
     });
 
-    test('TS.MADD, TS.MGET', () async {
+    void testRedis(String description, Future<void> Function() body) {
+      test(description, () async {
+        if (!isRedis) {
+          markTestSkipped('Skipping: This feature is supported on Redis only.');
+          return;
+        }
+        await body();
+      });
+    }
+
+    testRedis('TS.MADD, TS.MGET', () async {
       const key1 = 'ts:batch:1';
       const key2 = 'ts:batch:2';
 
       await client.tsCreate(key1,
-          options: ['LABELS', 'type', 'A'], forceRun: true);
+          options: ['LABELS', 'type', 'A'], forceRun: false);
       await client.tsCreate(key2,
-          options: ['LABELS', 'type', 'B'], forceRun: true);
+          options: ['LABELS', 'type', 'B'], forceRun: false);
 
       // 1. TS.MADD
       final maddRes = await client.tsMAdd([
         [key1, '*', 10],
         [key2, '*', 20]
-      ], forceRun: true);
+      ], forceRun: false);
 
       expect(maddRes, isA<List>());
       expect(maddRes.length, equals(2));
 
       // 2. TS.MGET (Filter by label)
-      final mgetRes = await client.tsMGet(['type=A'], forceRun: true);
+      final mgetRes = await client.tsMGet(['type=A'], forceRun: false);
 
       // Should contain key1 data but not key2
       final resStr = mgetRes.toString();
@@ -58,47 +90,47 @@ void main() {
       expect(resStr, isNot(contains(key2)));
     });
 
-    test('TS.RANGE, TS.REVRANGE', () async {
+    testRedis('TS.RANGE, TS.REVRANGE', () async {
       const key = 'ts:range_test';
-      await client.tsCreate(key, forceRun: true);
+      await client.tsCreate(key, forceRun: false);
 
       // Seed data: 10 samples
       const startTs = 10000;
       for (var i = 0; i < 10; i++) {
-        await client.tsAdd(key, startTs + (i * 1000), i + 1, forceRun: true);
+        await client.tsAdd(key, startTs + (i * 1000), i + 1, forceRun: false);
       }
 
       // 1. TS.RANGE (All)
-      final rangeAll = await client.tsRange(key, '-', '+', forceRun: true);
+      final rangeAll = await client.tsRange(key, '-', '+', forceRun: false);
       expect((rangeAll as List).length, equals(10));
 
       // 2. TS.RANGE (With Aggregation)
       // Sum in 5000ms buckets
       final rangeAgg = await client.tsRange(key, '-', '+',
-          options: ['AGGREGATION', 'sum', 5000], forceRun: true) as List;
+          options: ['AGGREGATION', 'sum', 5000], forceRun: false) as List;
       // Expect 2 buckets
       expect(rangeAgg.length, equals(2));
 
       // 3. TS.REVRANGE (Limit Count)
       final revRange = await client.tsRevRange(key, '-', '+',
-          options: ['COUNT', 2], forceRun: true) as List;
+          options: ['COUNT', 2], forceRun: false) as List;
       expect(revRange.length, equals(2));
       // First item should be the last inserted (val 10)
       expect(double.parse((revRange[0] as List)[1].toString()), equals(10.0));
     });
 
-    test('TS.MRANGE', () async {
+    testRedis('TS.MRANGE', () async {
       await client.tsCreate('ts:m:1',
-          options: ['LABELS', 'team', 'blue'], forceRun: true);
+          options: ['LABELS', 'team', 'blue'], forceRun: false);
       await client.tsCreate('ts:m:2',
-          options: ['LABELS', 'team', 'blue'], forceRun: true);
+          options: ['LABELS', 'team', 'blue'], forceRun: false);
 
-      await client.tsAdd('ts:m:1', 1000, 10, forceRun: true);
-      await client.tsAdd('ts:m:2', 1000, 20, forceRun: true);
+      await client.tsAdd('ts:m:1', 1000, 10, forceRun: false);
+      await client.tsAdd('ts:m:2', 1000, 20, forceRun: false);
 
       // TS.MRANGE (Filter by team=blue)
       final mrangeRes =
-          await client.tsMRange('-', '+', ['team=blue'], forceRun: true);
+          await client.tsMRange('-', '+', ['team=blue'], forceRun: false);
 
       final resStr = mrangeRes.toString();
       expect(resStr, contains('ts:m:1'));

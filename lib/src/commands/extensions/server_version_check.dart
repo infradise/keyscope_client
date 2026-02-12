@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import '../../../keyscope_cluster_client_base.dart'
+    show KeyscopeServerException;
 import '../commands.dart';
 
 /// Mapping between Dragonfly versions and corresponding Redis versions
@@ -21,6 +23,13 @@ const Map<String, String> dragonflyToRedisMap = {
   '1.36.0': '7.4.0',
   // '1.40.0': '8.0.0',
 };
+
+extension StringExtension on String {
+  String capitalize() {
+    if (isEmpty) return this;
+    return this[0].toUpperCase() + substring(1).toLowerCase();
+  }
+}
 
 /// Extension to add version checking capabilities to any class using
 /// the Commands mixin.
@@ -73,6 +82,10 @@ extension ServerVersionCheck on Commands {
   Future<bool> get isRedis async => _isRedis;
   Future<bool> get isValkey async => _isValkey;
   Future<bool> get isDragonfly async => _isDragonfly;
+
+  Future<String> get _getServerName async =>
+      (await getOrFetchMetadata()).serverName.toLowerCase();
+  Future<String> get getServerName async => _getServerName;
 
   // ---------------------------------------------------------------------------
   // Public Version Checkers
@@ -210,16 +223,32 @@ extension ServerVersionCheck on Commands {
   Future<void> checkValkeySupportExtended(
       String commandName, String subCommandName,
       {bool forceRun = false}) async {
-    if (await isValkey &&
-            await isRedisOnlyCommand(commandName, subCommandName) &&
-            !forceRun ||
-        await isRedis &&
-            await isRedisOnlyCommand(commandName, subCommandName) &&
-            !forceRun) {
-      throw Exception('Command $commandName is not supported in your server. '
-          'Pass `forceRun: true` to execute it for development reason.');
+    if (forceRun) return;
+
+    final redis = await isRedis;
+    final valkey = await isValkey;
+    final serverName = await getServerName;
+    // final serverType
+
+    final isRedisOnly = await isRedisOnlyCommand(commandName, subCommandName);
+    final isValkeyOnly = await isValkeyOnlyCommand(commandName, subCommandName);
+
+    var isInvalid = false;
+    if (redis && isValkeyOnly) {
+      isInvalid = true;
+    } else if (valkey && isRedisOnly) {
+      isInvalid = true;
     }
-    // NOTE: Here are examples:
+
+    final serverType = serverName.capitalize();
+
+    if (isInvalid) {
+      throw KeyscopeServerException('Command $commandName '
+          '${subCommandName.isNotEmpty ? subCommandName : ''} '
+          'is not supported in your $serverType server. '
+          'Pass `forceRun: true` to execute it for development reasons.');
+    }
+    // NOTE:
     // In Valkey,
     // Error: KeyscopeServerException(ERR): ERR unknown command 'FT.AGGREGATE',
     //        with args beginning with: 'index' ''
@@ -233,11 +262,11 @@ extension ServerVersionCheck on Commands {
       'FT.ALIASDEL',
       'FT.ALIASUPDATE',
       'FT.ALTER',
-      'FT.CONFIG GET',
-      'FT.CONFIG SET',
+      'FT.CONFIG GET', // TODO: v4.2.1
+      'FT.CONFIG SET', // TODO: v4.2.1
       // 'FT.CREATE',
-      'FT.CURSOR DEL',
-      'FT.CURSOR READ',
+      'FT.CURSOR DEL', // TODO: v4.2.1
+      'FT.CURSOR READ', // TODO: v4.2.1
       'FT.DICTADD',
       'FT.DICTDEL',
       'FT.DICTDUMP',
