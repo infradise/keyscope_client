@@ -19,6 +19,16 @@ import 'package:keyscope_client/keyscope_client.dart';
 Future<void> main() async {
   final client = KeyscopeClient(host: 'localhost', port: 6379);
   await client.connect();
+
+  // Redis Only Feature
+  if (!await client.isRedisServer()) {
+    // or !await client.isRedis
+    print('⚠️  Skipping: This example requires a Redis server.');
+    print('   Current server appears to be Valkey or other compatible server.');
+    await client.close(); // disconnect
+    return;
+  }
+
   await client.flushAll();
 
   print('--- 📊 Time Series Range & Batch Example ---');
