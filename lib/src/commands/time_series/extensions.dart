@@ -14,4 +14,21 @@
  * limitations under the License.
  */
 
-export 'commands/template.dart';
+export '../extensions/server_version_check.dart' show ServerVersionCheck;
+export 'commands/ts_add.dart';
+export 'commands/ts_alter.dart';
+export 'commands/ts_create.dart';
+export 'commands/ts_create_rule.dart';
+export 'commands/ts_decrby.dart';
+export 'commands/ts_del.dart';
+export 'commands/ts_delete_rule.dart';
+export 'commands/ts_get.dart';
+export 'commands/ts_incrby.dart';
+export 'commands/ts_info.dart';
+export 'commands/ts_madd.dart';
+export 'commands/ts_mget.dart';
+export 'commands/ts_mrange.dart';
+export 'commands/ts_mrevrange.dart';
+export 'commands/ts_query_index.dart';
+export 'commands/ts_range.dart';
+export 'commands/ts_revrange.dart';

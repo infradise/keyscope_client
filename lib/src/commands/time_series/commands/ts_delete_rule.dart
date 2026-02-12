@@ -14,6 +14,22 @@
  * limitations under the License.
  */
 
-import '../commands.dart' show TimeSeriesCommands;
+import '../commands.dart' show ServerVersionCheck, TimeSeriesCommands;
 
-extension TSTemplateCommand on TimeSeriesCommands {}
+extension TsDeleteRuleCommand on TimeSeriesCommands {
+  /// TS.DELETERULE sourceKey destKey
+  ///
+  /// Delete a compaction rule.
+  ///
+  /// - [sourceKey]: The source key.
+  /// - [destKey]: The destination key.
+  /// - [forceRun]: Force execution on Valkey.
+  Future<dynamic> tsDeleteRule(
+    String sourceKey,
+    String destKey, {
+    bool forceRun = false,
+  }) async {
+    await checkValkeySupport('TS.DELETERULE', forceRun: forceRun);
+    return execute(<dynamic>['TS.DELETERULE', sourceKey, destKey]);
+  }
+}
