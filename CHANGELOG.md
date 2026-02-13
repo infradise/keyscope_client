@@ -29,6 +29,12 @@
     * `hMSet`: Changed parameter type of `data` from `Map<String, String>` to `Map<String, dynamic>`, allowing values of any type instead of only `String`.
 
 ## 4.0.0
+* **Package Rename**
+    * First release under the name `keyscope_client` (4.0.0+)
+    * Renamed from `valkey_client` and `typeredis` to `keyscope_client` (4.0.0+)
+      * Continuation of functionality from `typeredis` (3.6.0~3.8.1) and `valkey_client` (0.0.1~3.5.1)
+    * Current active line of development
+
 * **Modular Architecture**
     * **New GENERIC Commands**  
         * Added a full suite of GENERIC commands: `copy`, `del`, `dump`, `exists`, `expire`, `expireAt`, `expireTime`, `keys`, `migrate`, `move`, `objectEncoding`, `objectFreq`, `objectHelp`, `objectIdleTime`, `objectRefCount`, `persist`, `pExpire`, `pExpireAt`, `pExpireTime`, `pTtl`, `randomKey`, `rename`, `renameNx`, `restore`, `scan`, `sort`, `sortRo`, `touch`, `ttl`, `type`, `unlink`, `wait`, `waitAof`.
@@ -41,6 +47,11 @@
     * **Bulk Strings**: Improved exception handling to better support commands such as `dump()`.
 
 ## 3.8.1
+* **Package Rename**
+    * Final release under the name `typeredis` (3.6.0 ~ 3.8.1)
+    * Renamed from `typeredis` to `keyscope_client` (4.0.0+)
+    * Package was marked as **replaced by `keyscope_client`** (4.0.0+)
+
 * **Dragonfly support**
     * **New aliases**: Added complete alias set for Dragonfly.
       * **Dragonfly**: `DragonflyClient`, `DragonflyClusterClient`, `DragonflyPool`, `DragonflyConnectionSettings`, `DragonflyLogLevel`, `DragonflyMessage`, `DragonflyException`, `DragonflyConnectionException`, `DragonflyServerException`, `DragonflyClientException`, `DragonflyParsingException`.
@@ -68,6 +79,12 @@
 * **Modular Architecture**
     * **New BITMAP Commands** 
         * Added full suite of BITMAP commands: `bitCount`, `bitField`, `bitFieldRo`, `bitOp`, `bitPos`, `getBit`, `setBit`.
+
+## 3.5.1
+* **Package Rename**
+    * Final release under the name `valkey_client` (0.0.1 ~ 3.5.1)
+    * Renamed from `valkey_client` to `typeredis` (3.6.0 ~ 3.8.1)
+    * Package was finally marked as **replaced by `keyscope_client`** (4.0.0+)
 
 ## 3.5.0
 * **Modular Architecture**
