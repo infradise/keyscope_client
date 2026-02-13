@@ -30,9 +30,9 @@
 
 ## 4.0.0
 * **Package Rename**
-    * First release under the name `keyscope_client` (4.0.0+)
-    * Renamed from `valkey_client` and `typeredis` to `keyscope_client` (4.0.0+)
-      * Continuation of functionality from `typeredis` (3.6.0~3.8.1) and `valkey_client` (0.0.1~3.5.1)
+    * First release under the name `keyscope_client` (v4.0.0+)
+    * Renamed from `valkey_client` and `typeredis` to `keyscope_client` (v4.0.0+)
+      * Continuation of functionality from `valkey_client` (v0.0.1 ~ v3.5.1) and `typeredis` (v3.6.0 ~ v3.8.1)
     * Current active line of development
 
 * **Modular Architecture**
@@ -48,9 +48,9 @@
 
 ## 3.8.1
 * **Package Rename**
-    * Final release under the name `typeredis` (3.6.0 ~ 3.8.1)
-    * Renamed from `typeredis` to `keyscope_client` (4.0.0+)
-    * Package was marked as **replaced by `keyscope_client`** (4.0.0+)
+    * Final release under the name `typeredis` (v3.6.0 ~ v3.8.1)
+    * Renamed from `typeredis` to `keyscope_client` (v4.0.0+)
+    * Package was marked as **replaced by `keyscope_client`** (v4.0.0+)
 
 * **Dragonfly support**
     * **New aliases**: Added complete alias set for Dragonfly.
@@ -82,9 +82,9 @@
 
 ## 3.5.1
 * **Package Rename**
-    * Final release under the name `valkey_client` (0.0.1 ~ 3.5.1)
-    * Renamed from `valkey_client` to `typeredis` (3.6.0 ~ 3.8.1)
-    * Package was finally marked as **replaced by `keyscope_client`** (4.0.0+)
+    * Final release under the name `valkey_client` (v0.0.1 ~ v3.5.1)
+    * Renamed from `valkey_client` to `typeredis` (v3.6.0 ~ v3.8.1)
+    * Package was finally marked as **replaced by `keyscope_client`** (v4.0.0+)
 
 ## 3.5.0
 * **Modular Architecture**
