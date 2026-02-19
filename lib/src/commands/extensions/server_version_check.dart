@@ -393,14 +393,14 @@ extension ServerVersionCheck on Commands {
         },
 
       for (var cmd in {
-        'DEPTH',
-        'FIELDS',
-        'KEYTABLE-CHECK',
-        'KEYTABLE-CORRUPT',
-        'KEYTABLE-DISTRIBUTION',
-        'MAX-DEPTH-KEY',
-        'MAX-SIZE-KEY',
-        'TEST-SHARED-API',
+        'JSON.DEBUG DEPTH',
+        'JSON.DEBUG FIELDS',
+        'JSON.DEBUG KEYTABLE-CHECK',
+        'JSON.DEBUG KEYTABLE-CORRUPT',
+        'JSON.DEBUG KEYTABLE-DISTRIBUTION',
+        'JSON.DEBUG MAX-DEPTH-KEY',
+        'JSON.DEBUG MAX-SIZE-KEY',
+        'JSON.DEBUG TEST-SHARED-API',
       })
         cmd: {'valkey': []},
 
@@ -466,9 +466,11 @@ extension ServerVersionCheck on Commands {
 
     final requiredVersion = targetSpecs[currentSystem];
 
+    final fullCommand = subCommandName == null ? commandName : '$commandName $subCommandName';
+
     if (requiredVersion == null) {
       if (useThrow) {
-        throw UnsupportedError('Command $commandName is not supported on '
+        throw UnsupportedError('Command $fullCommand is not supported on '
             '${currentSystem.capitalize()}.');
       }
       return false;
@@ -490,7 +492,7 @@ extension ServerVersionCheck on Commands {
 
     if (!await checkVersion()) {
       if (useThrow) {
-        throw UnsupportedError('Unsupported command: $commandName. '
+        throw UnsupportedError('Unsupported command: $fullCommand. '
             'Requires ${currentSystem.capitalize()} '
             'version ${requiredVersion.join('.')}.');
       }
