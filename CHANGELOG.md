@@ -1,11 +1,23 @@
 # Changelog
 
+## 4.3.2
+* **Fixes & Enhancements**
+    * **Refined VECTOR SET Commands**: 
+        * Aligned command signatures with Redis 8.0/8.2/8.4 specifications (e.g., `VADD`, `VGETATTR`, `VRANGE`, `VSIM`).
+        * Fixed parameter serialization using `VALUES` syntax for stricter server compatibility.
+        * Added comprehensive test coverage for Vector operations.
+* **Documentation & Examples**
+    * **Comprehensive Vector Set Examples**: Added detailed example code for Vector Set operations to demonstrate best practices and usage patterns.
+        * **Lifecycle**: `vs_basic_example.dart` covers basic creation, addition, deletion, and information retrieval (`VADD`, `VCARD`, `VINFO`, etc.).
+        * **Attributes**: `vs_attr_example.dart` demonstrates metadata management and embedding retrieval (`VSETATTR`, `VGETATTR`, `VEMB`).
+        * **Search & Range**: `vs_search_example.dart` illustrates similarity search and lexical iteration (`VSIM`, `VRANGE`).
+
 ## 4.3.1
 * **Compatibility Guard**
     * **Refined Command & Version Validation**
         * Refactored the internal validation logic to enable granular version control at the individual command and sub-command level.
         * Established distinct version requirements for `Redis` and `Valkey`, ensuring precise compatibility checks for specific environments.
-        * **Updates:**Implemented precise version specifications for the recently added **Vector Set** commands and refined validation rules for Search, JSON, TimeSeries, Hash, and String modules.
+        * **Updates:** Implemented precise version specifications for the recently added **Vector Set** commands and refined validation rules for Search, JSON, TimeSeries, Hash, and String modules.
 
 ## 4.3.0
 * **Modular Architecture**

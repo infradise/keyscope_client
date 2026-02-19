@@ -17,45 +17,90 @@
 import '../commands.dart' show ServerVersionCheck, VectorSetCommands;
 
 extension VSimCommand on VectorSetCommands {
-  /// VSIM key id vector [metric]
-  /// OR
-  /// VSIM key id1 id2 [metric]
+  /// VSIM key (ELE | VALUES num) (element | vector) `[WITHSCORES]`
+  /// [WITHATTRIBS] [COUNT num] [EPSILON delta] [EF ef]
+  /// [FILTER expression] [FILTER-EF max-effort] `[TRUTH]` `[NOTHREAD]`
   ///
-  /// Calculates similarity between vectors.
+  /// Performs an approximate or exact similarity search within a vector set.
   ///
   /// [key]: The key of the vector set.
-  /// [id]: The base vector ID.
-  /// [compareId]: An ID to compare against.
-  /// [compareVector]: A raw vector to compare against (mutually exclusive
-  ///                  with [compareId]).
-  /// [metric]: Optional metric override.
+  ///
+  /// [queryElement]: The ID of an existing element to use as the query (uses
+  ///                 'ELE').
+  /// [queryVector]: A raw vector to use as the query (uses 'VALUES').
+  /// *Note*: Exactly one of [queryElement] or [queryVector] must be provided.
+  ///
+  /// [withScores]: Returns similarity scores.
+  /// [withAttribs]: Returns JSON attributes associated with elements.
+  /// [count]: Limits the number of results.
+  /// [epsilon]: Returns elements within distance 'delta' (0.0 to 1.0).
+  /// [ef]: Search exploration factor (higher = better recall, slower).
+  /// [filter]: Filter expression string.
+  /// [filterEf]: Max filtering effort.
+  /// [truth]: Force exact linear scan (O(N)).
+  /// [noThread]: Execute in main thread.
   /// [forceRun]: Force execution on Valkey.
-  Future<double> vSim(
-    String key,
-    String id, {
-    String? compareId,
-    List<num>? compareVector,
-    String? metric,
+  Future<List<dynamic>> vSim(
+    String key, {
+    String? queryElement,
+    List<num>? queryVector,
+    bool withScores = false,
+    bool withAttribs = false,
+    int? count,
+    double? epsilon,
+    int? ef,
+    String? filter,
+    int? filterEf,
+    bool truth = false,
+    bool noThread = false,
     bool forceRun = false,
   }) async {
     await checkValkeySupport('VSIM', forceRun: forceRun);
 
-    final cmd = <dynamic>['VSIM', key, id];
+    final cmd = <dynamic>['VSIM', key];
 
-    if (compareId != null) {
-      cmd.add(compareId);
-    } else if (compareVector != null) {
-      cmd.addAll(compareVector);
+    // 1. Query Argument (ELE vs VALUES)
+    if (queryElement != null) {
+      cmd.addAll(['ELE', queryElement]);
+    } else if (queryVector != null) {
+      // Use VALUES syntax: VALUES <dim> <val1> <val2> ...
+      cmd.add('VALUES');
+      cmd.add(queryVector.length);
+      // Ensure doubles are sent
+      cmd.addAll(queryVector.map((e) => e.toDouble()));
     } else {
       throw ArgumentError(
-          'Either compareId or compareVector must be provided.');
+          'Either queryElement or queryVector must be provided.');
     }
 
-    if (metric != null) {
-      cmd.add(metric);
+    // 2. Options
+    if (withScores) cmd.add('WITHSCORES');
+
+    if (await isRedis82OrLater()) {
+      if (withAttribs) cmd.add('WITHATTRIBS');
+    } else {
+      throw UnsupportedError('Starting with Redis version 8.2.0: '
+          'added the WITHATTRIBS option.');
     }
 
+    if (count != null) cmd.addAll(['COUNT', count]);
+
+    if (epsilon != null) cmd.addAll(['EPSILON', epsilon]);
+
+    if (ef != null) cmd.addAll(['EF', ef]);
+
+    if (filter != null) cmd.addAll(['FILTER', filter]);
+    if (filterEf != null) cmd.addAll(['FILTER-EF', filterEf]);
+
+    if (truth) cmd.add('TRUTH');
+    if (noThread) cmd.add('NOTHREAD');
+
+    // Returns a List of results (e.g., ["id1", "score1", "id2", "score2"...])
     final result = await execute(cmd);
-    return double.parse(result.toString());
+
+    if (result is List) {
+      return result;
+    }
+    return [];
   }
 }

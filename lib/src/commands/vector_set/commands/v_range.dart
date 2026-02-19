@@ -17,30 +17,36 @@
 import '../commands.dart' show ServerVersionCheck, VectorSetCommands;
 
 extension VRangeCommand on VectorSetCommands {
-  /// VRANGE key vector radius [metric]
+  /// VRANGE key start end [count]
   ///
-  /// Performs a range query (search within radius).
+  /// Iterates over elements in the vector set in lexicographical order.
   ///
-  /// [key]: The key of the vector set.
-  /// [vector]: The query vector.
-  /// [radius]: The search radius.
-  /// [metric]: Optional distance metric (e.g., 'L2', 'IP', 'COSINE').
+  /// [key]: The name of the vector set key.
+  /// [start]: Start of range (e.g., '[a', '(a', '-').
+  /// [end]: End of range (e.g., '[z', '(z', '+').
+  /// [count]: Max number of elements to return (negative for all).
   /// [forceRun]: Force execution on Valkey.
   Future<dynamic> vRange(
     String key,
-    List<num> vector,
-    num radius, {
-    String? metric,
+    String start,
+    String end, {
+    int? count,
     bool forceRun = false,
   }) async {
     await checkValkeySupport('VRANGE', forceRun: forceRun);
 
-    final cmd = <dynamic>['VRANGE', key, ...vector, radius];
+    // Command: VRANGE key start end [count]
+    final cmd = <dynamic>['VRANGE', key, start, end];
 
-    if (metric != null) {
-      cmd.add(metric);
+    if (count != null) {
+      cmd.add(count);
     }
 
-    return execute(cmd);
+    final result = await execute(cmd);
+
+    if (result is List) {
+      return result.map((e) => e.toString()).toList();
+    }
+    return [];
   }
 }

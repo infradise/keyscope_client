@@ -103,7 +103,12 @@ extension ServerVersionCheck on Commands {
   // - https://redis.io/docs/latest/operate/oss_and_stack/stack-with-enterprise/release-notes/
   // - https://redis.io/docs/latest/develop/data-types/bitfields/
 
-  Future<bool> isRedis800rLater() async =>
+  Future<bool> isRedis82OrLater() async =>
+      (await _isRedis) &&
+      (await _majorVersion) >= 8 &&
+      (await _minorVersion) >= 2;
+
+  Future<bool> isRedis80OrLater() async =>
       (await _isRedis) && (await _majorVersion) >= 8;
 
   /// Returns true if the server is Redis and version is 7.0.0 or later.

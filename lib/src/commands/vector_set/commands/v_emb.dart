@@ -33,7 +33,11 @@ extension VEmbCommand on VectorSetCommands {
 
     final result = await execute(['VEMB', key, id]);
 
-    if (result is List) {
+    // Handle binary response
+    if (result is List<int>) {
+      return unpackVector(result);
+    } else if (result is List) {
+      // Fallback if server returns list of strings/numbers
       return result.map((e) => double.parse(e.toString())).toList();
     }
     return [];

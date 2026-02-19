@@ -14,24 +14,43 @@
  * limitations under the License.
  */
 
+import 'dart:convert' show jsonDecode;
+
 import '../commands.dart' show ServerVersionCheck, VectorSetCommands;
 
 extension VGetAttrCommand on VectorSetCommands {
-  /// VGETATTR key id attribute
+  /// VGETATTR key element
   ///
-  /// Retrieves a specific attribute of a vector.
+  /// Retrieves the attributes (JSON object) associated with an element.
+  /// Returns a [Map<String, dynamic>] if successful.
   ///
   /// [key]: The key of the vector set.
-  /// [id]: The vector ID.
-  /// [attribute]: The name of the attribute to retrieve.
+  /// [element]: The element ID.
   /// [forceRun]: Force execution on Valkey.
   Future<dynamic> vGetAttr(
     String key,
-    String id,
-    String attribute, {
+    String element, {
     bool forceRun = false,
   }) async {
     await checkValkeySupport('VGETATTR', forceRun: forceRun);
-    return execute(['VGETATTR', key, id, attribute]);
+
+    // Returns: JSON string (e.g., "{\"color\":\"red\"}")
+    final result = await execute(['VGETATTR', key, element]);
+
+    if (result == null) return null;
+
+    try {
+      if (result is String) {
+        return jsonDecode(result) as Map<String, dynamic>;
+      } else if (result is List) {
+        // In case some client/server versions return list of bytes/strings
+        // Join or parse accordingly. Usually it's a Bulk String.
+        return jsonDecode(result.join()) as Map<String, dynamic>;
+      }
+      return jsonDecode(result.toString()) as Map<String, dynamic>;
+    } catch (e) {
+      // If parsing fails or result is empty
+      return {};
+    }
   }
 }

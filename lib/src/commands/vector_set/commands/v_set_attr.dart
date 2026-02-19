@@ -14,26 +14,36 @@
  * limitations under the License.
  */
 
+import 'dart:convert' show jsonEncode;
+
 import '../commands.dart' show ServerVersionCheck, VectorSetCommands;
 
 extension VSetAttrCommand on VectorSetCommands {
-  /// VSETATTR key id attribute value
+  /// VSETATTR key id attributes
   ///
-  /// Sets or updates an attribute for a vector.
+  /// Updates the attributes associated with the vector.
   ///
   /// [key]: The key of the vector set.
   /// [id]: The vector ID.
-  /// [attribute]: The attribute name.
-  /// [value]: The value to set.
+  /// [attributes]: A map of attributes to set (will be converted to JSON
+  ///               string).
+  /// - `[attribute]`: The attribute name.
+  /// - `[value]`: The value to set.
   /// [forceRun]: Force execution on Valkey.
   Future<dynamic> vSetAttr(
     String key,
     String id,
-    String attribute,
-    dynamic value, {
+    Map<String, dynamic> attributes, // Accept Map instead of single key-value
+    {
     bool forceRun = false,
   }) async {
     await checkValkeySupport('VSETATTR', forceRun: forceRun);
-    return execute(['VSETATTR', key, id, attribute, value]);
+
+    // Convert Map to JSON string
+    // (e.g., {"category":"electronics", "price":100})
+    final jsonAttr = jsonEncode(attributes);
+
+    // Command: VSETATTR key id json_string
+    return execute(['VSETATTR', key, id, jsonAttr]);
   }
 }
