@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.4.0
+* **Modular Architecture**
+    * **New BLOOM FILTER Commands**: 
+        * Added a full suite of BLOOM FILTER commands: `bfAdd`, `bfCard`, `bfExists`, `bfInfo`, `bfInsert`, `bfLoad`, `bfLoadChunk`, `bfMAdd`, `bfMExists`, `bfReserve`, `bfScanDump`
+
 ## 4.3.2
 * **Fixes & Enhancements**
     * **Refined VECTOR SET Commands**: 
