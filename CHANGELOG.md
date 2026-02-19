@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.4.2
+* **Modular Architecture**
+    * **Enhanced TIME SERIES Commands**
+        * Updated TIME SERIES command parameter handling.
+        * Previously limited to `options: []`, now supports explicit variables for all parameters.
+        * Enables developers to pass parameters more flexibly and write cleaner, type-safe code.
+
 ## 4.4.1
 * **Modular Architecture**
     * **New CUCKOO FILTER Commands**
