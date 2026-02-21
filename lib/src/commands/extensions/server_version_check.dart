@@ -276,6 +276,20 @@ extension ServerVersionCheck on Commands {
     // (Map<Command, Map<System, Version>>)
     //
     final commandRegistry = <String, Map<String, List<int>>>{
+      // TOP-K SKETCH
+      for (var cmd in {
+        'TOPK.ADD',
+        'TOPK.COUNT',
+        'TOPK.INCRBY',
+        'TOPK.INFO',
+        'TOPK.LIST',
+        'TOPK.QUERY',
+        'TOPK.RESERVE'
+      })
+        cmd: {
+          'redis': [2, 0, 0], // Redis Open Source / Bloom
+        },
+
       // COUNT-MIN SKETCH
       for (var cmd in {
         'CMS.INCRBY',
@@ -304,8 +318,8 @@ extension ServerVersionCheck on Commands {
           'valkey': [1, 0, 0], // https://github.com/valkey-io/valkey-bloom
         },
       'BF.CARD': {
-        'redis': [2, 4, 4]
-      }, // Redis Open Source / Bloom
+        'redis': [2, 4, 4], // Redis Open Source / Bloom
+      },
 
       for (var cmd in {'BF.LOADCHUNK', 'BF.SCANDUMP'}) cmd: {'redis': []},
       'BF.LOAD': {'valkey': []},

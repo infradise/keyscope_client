@@ -14,11 +14,21 @@
  * limitations under the License.
  */
 
-export '../extensions/server_version_check.dart' show ServerVersionCheck;
-export 'commands/top_k_add.dart';
-export 'commands/top_k_count.dart';
-export 'commands/top_k_incr_by.dart';
-export 'commands/top_k_info.dart';
-export 'commands/top_k_list.dart';
-export 'commands/top_k_query.dart';
-export 'commands/top_k_reserve.dart';
+import '../commands.dart' show ServerVersionCheck, TopKSketchCommands;
+
+extension TopKCountCommand on TopKSketchCommands {
+  /// TOPK.COUNT key item [item ...]
+  /// Returns the approximate count for one or more items.
+  Future<List<int>> topkCount(
+    String key,
+    List<String> items, {
+    bool forceRun = false,
+  }) async {
+    await checkValkeySupport('TOPK.COUNT', forceRun: forceRun);
+    final result = await execute(['TOPK.COUNT', key, ...items]);
+    if (result is List) {
+      return result.map((e) => int.parse(e.toString())).toList();
+    }
+    return [];
+  }
+}

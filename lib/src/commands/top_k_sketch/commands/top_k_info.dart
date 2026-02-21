@@ -14,6 +14,17 @@
  * limitations under the License.
  */
 
-import '../commands.dart' show TopKSketchCommands;
+import '../commands.dart' show ServerVersionCheck, TopKSketchCommands;
 
-extension TopKTemplateCommand on TopKSketchCommands {}
+extension TopKInfoCommand on TopKSketchCommands {
+  /// TOPK.INFO key
+  /// Returns statistics about a TopK key.
+  Future<dynamic> topkInfo(
+    String key, {
+    bool forceRun = false,
+  }) async {
+    await checkValkeySupport('TOPK.INFO', forceRun: forceRun);
+
+    return execute(['TOPK.INFO', key]);
+  }
+}
