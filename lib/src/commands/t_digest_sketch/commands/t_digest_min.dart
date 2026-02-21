@@ -14,6 +14,14 @@
  * limitations under the License.
  */
 
-import '../commands.dart' show TDigestSketchCommands;
+import '../commands.dart' show ServerVersionCheck, TDigestSketchCommands;
 
-extension TDTemplateCommand on TDigestSketchCommands {}
+extension TDigestMinCommand on TDigestSketchCommands {
+  /// TDIGEST.MIN key
+  /// Returns the minimum observation value from a t-digest sketch.
+  Future<double> tDigestMin(String key, {bool forceRun = false}) async {
+    await checkValkeySupport('TDIGEST.MIN', forceRun: forceRun);
+    final result = await execute(['TDIGEST.MIN', key]);
+    return double.parse(result.toString());
+  }
+}

@@ -14,4 +14,18 @@
  * limitations under the License.
  */
 
-export 'commands/template.dart';
+export '../extensions/server_version_check.dart' show ServerVersionCheck;
+export 'commands/t_digest_add.dart';
+export 'commands/t_digest_by_rank.dart';
+export 'commands/t_digest_by_rev_rank.dart';
+export 'commands/t_digest_cdf.dart';
+export 'commands/t_digest_create.dart';
+export 'commands/t_digest_info.dart';
+export 'commands/t_digest_max.dart';
+export 'commands/t_digest_merge.dart';
+export 'commands/t_digest_min.dart';
+export 'commands/t_digest_quantile.dart';
+export 'commands/t_digest_rank.dart';
+export 'commands/t_digest_reset.dart';
+export 'commands/t_digest_rev_rank.dart';
+export 'commands/t_digest_trimmed_mean.dart';
