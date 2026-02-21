@@ -14,10 +14,18 @@
  * limitations under the License.
  */
 
-export '../extensions/server_version_check.dart' show ServerVersionCheck;
-export 'commands/cms_incr_by.dart';
-export 'commands/cms_info.dart';
-export 'commands/cms_init_by_dim.dart';
-export 'commands/cms_init_by_prob.dart';
-export 'commands/cms_merge.dart';
-export 'commands/cms_query.dart';
+import '../commands.dart' show CountMinSketchCommands, ServerVersionCheck;
+
+extension CmsInitByDimCommand on CountMinSketchCommands {
+  /// CMS.INITBYDIM key width depth
+  /// Initializes a Count-Min Sketch to dimensions specified by width and depth.
+  Future<dynamic> cmsInitByDim(
+    String key,
+    int width,
+    int depth, {
+    bool forceRun = false,
+  }) async {
+    await checkValkeySupport('CMS.INITBYDIM', forceRun: forceRun);
+    return execute(['CMS.INITBYDIM', key, width, depth]);
+  }
+}

@@ -14,10 +14,16 @@
  * limitations under the License.
  */
 
-export '../extensions/server_version_check.dart' show ServerVersionCheck;
-export 'commands/cms_incr_by.dart';
-export 'commands/cms_info.dart';
-export 'commands/cms_init_by_dim.dart';
-export 'commands/cms_init_by_prob.dart';
-export 'commands/cms_merge.dart';
-export 'commands/cms_query.dart';
+import '../commands.dart' show CountMinSketchCommands, ServerVersionCheck;
+
+extension CmsInfoCommand on CountMinSketchCommands {
+  /// CMS.INFO key
+  /// Returns information about a sketch.
+  Future<dynamic> cmsInfo(
+    String key, {
+    bool forceRun = false,
+  }) async {
+    await checkValkeySupport('CMS.INFO', forceRun: forceRun);
+    return execute(['CMS.INFO', key]);
+  }
+}

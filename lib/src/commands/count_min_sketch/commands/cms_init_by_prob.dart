@@ -14,10 +14,19 @@
  * limitations under the License.
  */
 
-export '../extensions/server_version_check.dart' show ServerVersionCheck;
-export 'commands/cms_incr_by.dart';
-export 'commands/cms_info.dart';
-export 'commands/cms_init_by_dim.dart';
-export 'commands/cms_init_by_prob.dart';
-export 'commands/cms_merge.dart';
-export 'commands/cms_query.dart';
+import '../commands.dart' show CountMinSketchCommands, ServerVersionCheck;
+
+extension CmsInitByProbCommand on CountMinSketchCommands {
+  /// CMS.INITBYPROB key error probability
+  /// Initializes a Count-Min Sketch to accommodate requested error and
+  /// probability.
+  Future<dynamic> cmsInitByProb(
+    String key,
+    double error,
+    double probability, {
+    bool forceRun = false,
+  }) async {
+    await checkValkeySupport('CMS.INITBYPROB', forceRun: forceRun);
+    return execute(['CMS.INITBYPROB', key, error, probability]);
+  }
+}

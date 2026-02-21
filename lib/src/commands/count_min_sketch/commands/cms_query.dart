@@ -14,6 +14,22 @@
  * limitations under the License.
  */
 
-import '../commands.dart' show CountMinSketchCommands;
+import '../commands.dart' show CountMinSketchCommands, ServerVersionCheck;
 
-extension CMSTemplateCommand on CountMinSketchCommands {}
+extension CmsQueryCommand on CountMinSketchCommands {
+  /// CMS.QUERY key item [item ...]
+  /// Returns count for one or more items in a sketch.
+  Future<List<int>> cmsQuery(
+    String key,
+    List<String> items, {
+    bool forceRun = false,
+  }) async {
+    await checkValkeySupport('CMS.QUERY', forceRun: forceRun);
+
+    final result = await execute(['CMS.QUERY', key, ...items]);
+    if (result is List) {
+      return result.map((e) => int.parse(e.toString())).toList();
+    }
+    return [];
+  }
+}
