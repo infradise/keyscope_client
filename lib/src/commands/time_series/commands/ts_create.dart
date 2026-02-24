@@ -36,7 +36,7 @@ extension TsCreateCommand on TimeSeriesCommands {
   }
 
   // TODO: Replace with existing one.
-  @Deprecated('DO NOT USE. Will be removed in the future.')
+  // @Deprecated('DO NOT USE. Will be removed in the future.')
 
   /// TS.CREATE key [RETENTION retentionPeriod]
   /// [ENCODING uncompressed|compressed] [CHUNK_SIZE size]

@@ -47,7 +47,7 @@ extension TsRevRangeCommand on TimeSeriesCommands {
   }
 
   // TODO: Replace with existing one.
-  @Deprecated('DO NOT USE. Will be removed in the future.')
+  // @Deprecated('DO NOT USE. Will be removed in the future.')
 
   /// TS.REVRANGE key fromTimestamp toTimestamp `[LATEST]` ...
   /// Note: [fromTimestamp] is still Min, [toTimestamp] is still Max.

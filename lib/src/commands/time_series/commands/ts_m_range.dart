@@ -49,7 +49,7 @@ extension TsMRangeCommand on TimeSeriesCommands {
   }
 
   // TODO: Replace with existing one.
-  @Deprecated('DO NOT USE. Will be removed in the future.')
+  // @Deprecated('DO NOT USE. Will be removed in the future.')
 
   /// TS.MRANGE fromTimestamp toTimestamp [LATEST] [FILTER_BY_TS ...]
   /// [FILTER_BY_VALUE ...] [WITHLABELS | SELECTED_LABELS label...]

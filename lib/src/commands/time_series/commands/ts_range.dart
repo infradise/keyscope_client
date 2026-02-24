@@ -47,7 +47,7 @@ extension TsRangeCommand on TimeSeriesCommands {
   }
 
   // TODO: Replace with existing one.
-  @Deprecated('DO NOT USE. Will be removed in the future.')
+  // @Deprecated('DO NOT USE. Will be removed in the future.')
 
   /// TS.RANGE key fromTimestamp toTimestamp [LATEST] [FILTER_BY_TS ...]
   /// [FILTER_BY_VALUE ...] [COUNT count] [ALIGN align]
