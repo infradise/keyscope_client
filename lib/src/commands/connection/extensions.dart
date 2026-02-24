@@ -14,4 +14,32 @@
  * limitations under the License.
  */
 
-export 'commands/template.dart';
+export '../extensions/server_version_check.dart' show ServerVersionCheck;
+export 'commands/auth.dart';
+export 'commands/client.dart';
+export 'commands/client_caching.dart';
+export 'commands/client_capa.dart';
+export 'commands/client_get_name.dart';
+export 'commands/client_get_redir.dart';
+export 'commands/client_help.dart';
+export 'commands/client_id.dart';
+export 'commands/client_import_source.dart';
+export 'commands/client_info.dart';
+export 'commands/client_kill.dart';
+export 'commands/client_list.dart';
+export 'commands/client_no_evict.dart';
+export 'commands/client_no_touch.dart';
+export 'commands/client_pause.dart';
+export 'commands/client_reply.dart';
+export 'commands/client_set_info.dart';
+export 'commands/client_set_name.dart';
+export 'commands/client_tracking.dart';
+export 'commands/client_tracking_info.dart';
+export 'commands/client_unblock.dart';
+export 'commands/client_unpause.dart';
+export 'commands/echo.dart';
+export 'commands/hello.dart';
+// export 'commands/ping.dart';
+export 'commands/quit.dart';
+export 'commands/reset.dart';
+export 'commands/select.dart';

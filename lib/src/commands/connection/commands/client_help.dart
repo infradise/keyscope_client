@@ -14,6 +14,17 @@
  * limitations under the License.
  */
 
-import '../commands.dart' show ConnectionCommands;
+import '../commands.dart' show ConnectionCommands, ServerVersionCheck;
 
-extension ConnectionTemplateCommand on ConnectionCommands {}
+extension ClientHelpCommand on ConnectionCommands {
+  /// CLIENT HELP
+  /// Returns a summary of CLIENT subcommands.
+  Future<List<String>> clientHelp({bool forceRun = false}) async {
+    await checkValkeySupport('CLIENT HELP', forceRun: forceRun);
+    final result = await execute(['CLIENT', 'HELP']);
+    if (result is List) {
+      return result.map((e) => e.toString()).toList();
+    }
+    return [];
+  }
+}
